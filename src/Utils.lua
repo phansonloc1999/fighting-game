@@ -7,5 +7,4 @@ end
 
 function love.keypressed(key)
     love.keyboard.keysPressed[key] = true
-    print(key)
 end
