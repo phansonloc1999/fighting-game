@@ -8,15 +8,23 @@ require("src/Assets")
 function love.load()
     Tick.framerate = FPS_LIMIT
 
-    player1 = Player(50, 50, { left = "left", right = "right", attack = "j" })
-    player2 = Player(250, 50, { left = "a", right = "d", attack = "f"})
+    player1 = Player(50, 50, {left = "left", right = "right", attack = "j"})
+    player2 = Player(250, 50, {left = "a", right = "d", attack = "f"})
 end
 
 function love.draw()
     player1:draw()
     player2:draw()
 
-    love.graphics.print("FPS: "..love.timer.getFPS())
+    -- Render hitboxes first
+    if (player1.currentMove) then
+        player1.currentMove:draw()
+    end
+    if (player2.currentMove) then
+        player2.currentMove:draw()
+    end
+
+    love.graphics.print("FPS: " .. love.timer.getFPS())
 end
 
 function love.update(dt)
