@@ -3,6 +3,7 @@
 -- dbg.tcpListen("localhost", 9966)
 
 require("src/Dependencies")
+require("src/Assets")
 
 function love.load()
     player = Player(50, 50)
