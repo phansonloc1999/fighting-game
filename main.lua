@@ -5,15 +5,16 @@
 require("src/Dependencies")
 
 function love.load()
-
+    player = Player(0, 0)
 end
 
 function love.draw()
-    -- body
+    player:draw()
 end
 
 function love.update(dt)
     --- require("libs/lovebird").update()
+    player:update(dt)
 
     love.keyboard.keysPressed = {}
 end
