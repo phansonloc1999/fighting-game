@@ -5,11 +5,16 @@ function Player:init(x, y)
     self.x, self.y = x, y
     self.health = 100
     self.hurtBoxes = {} ---@type CollisionBox[]
+    self.hitBoxes = {} ---@type CollisionBox[]
+    self.currentMove = nil
 
     self.stateMachine =
         StateMachine {
         ["idle"] = function()
             return PlayerIdleState(self)
+        end,
+        ["attack"] = function()
+            return PlayerAttackState(self)
         end
     }
 
@@ -26,6 +31,8 @@ function Player:draw()
         love.graphics.setColor(1, 1, 1)
         love.graphics.setLineWidth(1)
     end
+
+    love.graphics.rectangle("fill", self.x, self.y, 50, 100)
 
     self.stateMachine:draw()
 end

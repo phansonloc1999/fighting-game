@@ -16,10 +16,14 @@ function PlayerIdleState:exit()
 end
 
 function PlayerIdleState:draw()
-    love.graphics.rectangle("fill", self.player.x, self.player.y, 50, 100)
 end
 
 function PlayerIdleState:update(dt)
+    if (love.keyboard.wasPressed("space")) then
+        self.player.stateMachine:change("attack")
+        return
+    end
+
     if (love.keyboard.isDown("left")) then
         self.player.x = self.player.x - PLAYER_MOVE_SPEED * dt
 

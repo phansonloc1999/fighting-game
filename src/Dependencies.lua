@@ -9,5 +9,8 @@ require("src/gameobjects/CollisionBox")
 require("src/StateMachine")
 require("src/BaseState")
 
+require("src/gameobjects/moves/BaseMove")
+require("src/gameobjects/moves/AttackMove")
 require("src/gameobjects/playerstates/Player")
 require("src/gameobjects/playerstates/PlayerIdleState")
+require("src/gameobjects/playerstates/PlayerAttackState")
