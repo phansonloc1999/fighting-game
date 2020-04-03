@@ -1,5 +1,5 @@
 ---@class PlayerIdleState
-PlayerIdleState = Class{__includes = BaseState}
+PlayerIdleState = Class {__includes = BaseState}
 
 PLAYER_MOVE_SPEED = 100
 
@@ -19,22 +19,12 @@ function PlayerIdleState:draw()
 end
 
 function PlayerIdleState:update(dt)
-    if (love.keyboard.wasPressed("space")) then
+    if (love.keyboard.wasPressed(self.player.keyConfigs.attack)) then
         self.player.stateMachine:change("attack")
         return
     end
 
-    if (love.keyboard.isDown("left")) then
-        self.player.x = self.player.x - PLAYER_MOVE_SPEED * dt
-
-        for i = 1, #self.player.hurtBoxes do
-            self.player.hurtBoxes[i]:offsetPos(-PLAYER_MOVE_SPEED * dt, 0)
-        end
-    elseif (love.keyboard.isDown("right")) then
-        self.player.x = self.player.x + PLAYER_MOVE_SPEED * dt
-        
-        for i = 1, #self.player.hurtBoxes do
-            self.player.hurtBoxes[i]:offsetPos(PLAYER_MOVE_SPEED * dt, 0)
-        end
+    if (love.keyboard.wasPressed(self.player.keyConfigs.left) or love.keyboard.wasPressed(self.player.keyConfigs.right)) then
+        self.player.stateMachine:change("move")
     end
 end

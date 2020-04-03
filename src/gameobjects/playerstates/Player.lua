@@ -1,7 +1,7 @@
 ---@class Player
 Player = Class {}
 
-function Player:init(x, y)
+function Player:init(x, y, keyConfigs)
     self.x, self.y = x, y
     self.health = 100
     self.hurtBoxes = {} ---@type CollisionBox[]
@@ -13,12 +13,17 @@ function Player:init(x, y)
         ["idle"] = function()
             return PlayerIdleState(self)
         end,
+        ["move"] = function()
+            return PlayerMoveState(self)
+        end,
         ["attack"] = function()
             return PlayerAttackState(self)
         end
     }
 
     self.stateMachine:change("idle")
+
+    self.keyConfigs = keyConfigs
 end
 
 function Player:draw()

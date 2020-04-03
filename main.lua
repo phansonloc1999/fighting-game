@@ -8,11 +8,13 @@ require("src/Assets")
 function love.load()
     Tick.framerate = FPS_LIMIT
 
-    player = Player(50, 50)
+    player1 = Player(50, 50, { left = "left", right = "right", attack = "j" })
+    player2 = Player(250, 50, { left = "a", right = "d", attack = "f"})
 end
 
 function love.draw()
-    player:draw()
+    player1:draw()
+    player2:draw()
 
     love.graphics.print("FPS: "..love.timer.getFPS())
 end
@@ -21,7 +23,8 @@ function love.update(dt)
     --- require("libs/lovebird").update()
 
     if (dt < 1) then
-        player:update(dt)
+        player1:update(dt)
+        player2:update(dt)
     end
 
     love.keyboard.keysPressed = {}
