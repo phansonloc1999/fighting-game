@@ -5,7 +5,7 @@
 require("src/Dependencies")
 
 function love.load()
-    player = Player(0, 0)
+    player = Player(50, 50)
 end
 
 function love.draw()

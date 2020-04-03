@@ -3,6 +3,7 @@ Anim8 = require("libs/anim8")
 
 require("src/Constants")
 require("src/Utils")
+require("src/gameobjects/CollisionBox")
 
 require("src/StateMachine")
 require("src/BaseState")
