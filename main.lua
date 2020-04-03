@@ -6,6 +6,8 @@ require("src/Dependencies")
 require("src/Assets")
 
 function love.load()
+    Tick.framerate = FPS_LIMIT
+
     player = Player(50, 50)
 end
 
@@ -15,7 +17,10 @@ end
 
 function love.update(dt)
     --- require("libs/lovebird").update()
-    player:update(dt)
+
+    if (dt < 1) then
+        player:update(dt)
+    end
 
     love.keyboard.keysPressed = {}
 end
