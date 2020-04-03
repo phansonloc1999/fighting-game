@@ -16,3 +16,7 @@ function CollisionBox:collidesWith(other)
            self.y < other.y + other.height and
            other.y < self.y + self.height
 end
+
+function CollisionBox:offsetPos(offsetX, offsetY)
+    self.x, self.y = self.x + offsetX, self.y + offsetY
+end
