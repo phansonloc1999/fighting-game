@@ -14,10 +14,10 @@ end
 function PlayerAttackState:exit()
     self.player.hurtBoxes = {}
     self.player.hitBoxes = {}
+    self.player.currentMove = nil
 end
 
 function PlayerAttackState:draw()
-    self.player.currentMove:draw()
 end
 
 function PlayerAttackState:update(dt)
