@@ -19,6 +19,10 @@ function PlayerIdleState:draw()
 end
 
 function PlayerIdleState:update(dt)
+    if (self.player.currentAnimation) then
+        self.player.currentAnimation.anim:update(dt)
+    end
+
     if (love.keyboard.wasPressed(self.player.keyConfigs.attack)) then
         self.player.stateMachine:change("attack")
         return

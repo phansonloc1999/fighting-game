@@ -1,7 +1,7 @@
 ---@class Player
 Player = Class {}
 
-function Player:init(x, y, keyConfigs)
+function Player:init(x, y, keyConfigs, animations, isFacing)
     self.x, self.y = x, y
     self.health = 100
     self.hurtBoxes = {} ---@type CollisionBox[]
@@ -24,6 +24,12 @@ function Player:init(x, y, keyConfigs)
     self.stateMachine:change("idle")
 
     self.keyConfigs = keyConfigs
+
+    self.isFacing = isFacing
+
+    self.animations = cloneAnimations(animations, self.isFacing)
+
+    self.currentAnimation = self.animations.idle
 end
 
 function Player:draw()
@@ -37,7 +43,9 @@ function Player:draw()
         love.graphics.setLineWidth(1)
     end
 
-    love.graphics.rectangle("fill", self.x, self.y, 50, 100)
+    if (self.currentAnimation) then
+        self.currentAnimation.anim:draw(self.currentAnimation.image, self.x, self.y)
+    end
 
     self.stateMachine:draw()
 end

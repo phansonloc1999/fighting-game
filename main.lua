@@ -8,8 +8,22 @@ require("src/Assets")
 function love.load()
     Tick.framerate = FPS_LIMIT
 
-    player1 = Player(50, 50, {left = "left", right = "right", attack = "j"})
-    player2 = Player(250, 50, {left = "a", right = "d", attack = "f"})
+    player1 =
+        Player(
+        50,
+        50,
+        {left = "left", right = "right", attack = "j"},
+        {idle = Animations.daggers.idle, walk = Animations.daggers.walk},
+        "right"
+    )
+    player2 =
+        Player(
+        250,
+        50,
+        {left = "a", right = "d", attack = "f"},
+        {idle = Animations.daggers.idle, walk = Animations.daggers.walk},
+        "left"
+    )
 end
 
 function love.draw()
