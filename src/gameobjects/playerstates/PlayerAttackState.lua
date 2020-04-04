@@ -9,9 +9,11 @@ function PlayerAttackState:enter(params)
     table.insert(self.player.hurtBoxes, CollisionBox(self.player.x, self.player.y, 50, 100))
 
     if (self.player.isFacing == "right") then
-        self.player.currentMove = AttackMove(20, 1, 1, { CollisionBox(self.player.x + 30, self.player.y + 30, 60, 20) })
+        self.player.currentMove = AttackMove(20, 1, 1, 
+                { CollisionBox(self.player.x + 42, self.player.y + 60, 40, 10) })
     else
-        self.player.currentMove = AttackMove(20, 1, 1, { CollisionBox(self.player.x - 30, self.player.y + 30, 60, 20) })
+        self.player.currentMove = AttackMove(20, 1, 1,
+                { CollisionBox(self.player.x - 32, self.player.y + 60, 40, 10) })
     end
 
     self.player.currentAnimation = {
@@ -30,6 +32,14 @@ function PlayerAttackState:exit()
 end
 
 function PlayerAttackState:draw()
+    self.player.currentAnimation.anim:draw(
+		    self.player.currentAnimation.image,
+		    self.player.x + self.player.hurtBoxes[1].width/2,
+		    self.player.y + self.player.hurtBoxes[1].height/2,
+		    0, 1, 1,
+		    self.player.currentAnimation.image:getWidth()/3 /2,
+		    self.player.currentAnimation.image:getHeight()/2 +2
+    )
 end
 
 function PlayerAttackState:update(dt)
