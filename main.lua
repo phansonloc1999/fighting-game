@@ -13,7 +13,7 @@ function love.load()
         50,
         50,
         {left = "left", right = "right", attack = "j"},
-        {idle = Animations.daggers.idle, walk = Animations.daggers.walk},
+        {idle = Animations.daggers.idle, walk = Animations.daggers.walk, stab = Animations.daggers.stab},
         "right"
     )
     player2 =
@@ -21,9 +21,11 @@ function love.load()
         250,
         50,
         {left = "a", right = "d", attack = "f"},
-        {idle = Animations.daggers.idle, walk = Animations.daggers.walk},
+        {idle = Animations.daggers.idle, walk = Animations.daggers.walk, stab = Animations.daggers.stab},
         "left"
     )
+
+    anim = Animations.daggers.stab
 end
 
 function love.draw()
