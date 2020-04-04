@@ -1,19 +1,21 @@
 ---@class PlayerAttackState
-PlayerAttackState = Class{__includes = BaseState}
+PlayerAttackState = Class {__includes = BaseState}
 
 function PlayerAttackState:init(player)
     self.player = player ---@type Player
+    self.otherPlayer = player == player1 and player2 or player1
+    self.hitOtherPlayer = false
 end
 
 function PlayerAttackState:enter(params)
     table.insert(self.player.hurtBoxes, CollisionBox(self.player.x, self.player.y, 50, 100))
 
     if (self.player.isFacing == "right") then
-        self.player.currentMove = AttackMove(20, 1, 1, 
-                { CollisionBox(self.player.x + 42, self.player.y + 60, 40, 10) })
+        self.player.currentMove =
+            AttackMove(20, 1, 1, {CollisionBox(self.player.x + 42, self.player.y + 60, 40, 10)}, 10)
     else
-        self.player.currentMove = AttackMove(20, 1, 1,
-                { CollisionBox(self.player.x - 32, self.player.y + 60, 40, 10) })
+        self.player.currentMove =
+            AttackMove(20, 1, 1, {CollisionBox(self.player.x - 32, self.player.y + 60, 40, 10)}, 10)
     end
 
     self.player.currentAnimation = {
@@ -23,6 +25,8 @@ function PlayerAttackState:enter(params)
     if (self.player.isFacing ~= self.player.animations.stab.defaultFacing) then
         self.player.currentAnimation.anim = self.player.currentAnimation.anim:flipH()
     end
+
+    self.hitOtherPlayer = false
 end
 
 function PlayerAttackState:exit()
@@ -33,12 +37,14 @@ end
 
 function PlayerAttackState:draw()
     self.player.currentAnimation.anim:draw(
-		    self.player.currentAnimation.image,
-		    self.player.x + self.player.hurtBoxes[1].width/2,
-		    self.player.y + self.player.hurtBoxes[1].height/2,
-		    0, 1, 1,
-		    self.player.currentAnimation.image:getWidth()/3 /2,
-		    self.player.currentAnimation.image:getHeight()/2 +2
+        self.player.currentAnimation.image,
+        self.player.x + self.player.hurtBoxes[1].width / 2,
+        self.player.y + self.player.hurtBoxes[1].height / 2,
+        0,
+        1,
+        1,
+        self.player.currentAnimation.image:getWidth() / 3 / 2,
+        self.player.currentAnimation.image:getHeight() / 2 + 2
     )
 end
 
@@ -53,4 +59,16 @@ function PlayerAttackState:update(dt)
     end
 
     self.player.currentMove:update(dt)
+
+    if not self.hitOtherPlayer then
+        for i = 1, #self.player.currentMove.hitboxes do
+            for j = 1, #self.otherPlayer.hurtBoxes do
+                if (self.player.currentMove.hitboxes[i]:collidesWith(self.otherPlayer.hurtBoxes[j])) then
+                    self.otherPlayer:takeDamage(self.player.currentMove.damage)
+                    self.hitOtherPlayer = true
+                    return
+                end
+            end
+        end
+    end
 end

@@ -37,3 +37,8 @@ end
 function Player:update(dt)
     self.stateMachine:update(dt)
 end
+
+function Player:takeDamage(ammount)
+    self.health = self.health - ammount
+    print("Health is "..self.health)
+end
