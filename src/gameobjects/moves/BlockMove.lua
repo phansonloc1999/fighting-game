@@ -2,7 +2,7 @@
 BlockMove = Class{}
 
 function BlockMove:init(startUp, recovery, blockAdvantage)
-    BaseMove.init(startUp, recovery)
+    BaseMove.init(self, startUp, recovery)
     
     self.blockAdvantage = blockAdvantage
 end

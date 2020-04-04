@@ -1,6 +1,6 @@
--- package.cpath = package.cpath .. ";c:/Users/Administrator/.vscode/extensions/tangzx.emmylua-0.3.28/debugger/emmy/windows/x64/?.dll"
--- local dbg = require("emmy_core")
--- dbg.tcpListen("localhost", 9966)
+package.cpath = package.cpath .. ";c:/Users/Administrator/.vscode/extensions/tangzx.emmylua-0.3.28/debugger/emmy/windows/x64/?.dll"
+local dbg = require("emmy_core")
+dbg.tcpListen("localhost", 9966)
 
 require("src/Dependencies")
 require("src/Assets")
@@ -12,16 +12,16 @@ function love.load()
         Player(
         50,
         50,
-        {left = "left", right = "right", attack = "j"},
-        {idle = Animations.daggers.idle, walk = Animations.daggers.walk, stab = Animations.daggers.stab},
+        {left = "left", right = "right", attack = "j", block = "k"},
+        {idle = Animations.daggers.idle, walk = Animations.daggers.walk, stab = Animations.daggers.stab, block = Animations.daggers.block},
         "right"
     )
     player2 =
         Player(
         250,
         50,
-        {left = "a", right = "d", attack = "f"},
-        {idle = Animations.daggers.idle, walk = Animations.daggers.walk, stab = Animations.daggers.stab},
+        {left = "a", right = "d", attack = "f", block = "g"},
+        {idle = Animations.daggers.idle, walk = Animations.daggers.walk, stab = Animations.daggers.stab, block = Animations.daggers.block},
         "left"
     )
 

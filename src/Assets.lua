@@ -18,3 +18,4 @@ Animations.daggers = {}
 Animations.daggers.idle = {anim = getAnimation(Sprites.daggers.idle, 2, 0.22), image = Sprites.daggers.idle, defaultFacing = "left"}
 Animations.daggers.walk = {anim = getAnimation(Sprites.daggers.walk, 4, 0.14), image = Sprites.daggers.walk, defaultFacing = "left"}
 Animations.daggers.stab = {anim = getAnimation(Sprites.daggers.stab, 3, {0.1, 0.16, 0.1}), image = Sprites.daggers.stab, defaultFacing = "left"}
+Animations.daggers.block = {anim = getAnimation(Sprites.daggers.block, 1, 1), image = Sprites.daggers.block, defaultFacing = "left"}

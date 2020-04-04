@@ -56,4 +56,8 @@ function PlayerIdleState:update(dt)
         self.player.isFacing = "right"
         self.player.stateMachine:change("move")
     end
+
+    if (love.keyboard.wasPressed(self.player.keyConfigs.block)) then
+        self.player.stateMachine:change("block")
+    end
 end

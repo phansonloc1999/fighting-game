@@ -13,7 +13,10 @@ require("src/BaseState")
 
 require("src/gameobjects/moves/BaseMove")
 require("src/gameobjects/moves/AttackMove")
+require("src/gameobjects/moves/BlockMove")
+
 require("src/gameobjects/playerstates/Player")
 require("src/gameobjects/playerstates/PlayerIdleState")
 require("src/gameobjects/playerstates/PlayerAttackState")
 require("src/gameobjects/playerstates/PlayerMoveState")
+require("src/gameobjects/playerstates/PlayerBlockState")

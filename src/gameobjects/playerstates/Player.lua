@@ -18,6 +18,9 @@ function Player:init(x, y, keyConfigs, animations, isFacing)
         end,
         ["attack"] = function()
             return PlayerAttackState(self)
+        end,
+        ["block"] = function()
+            return PlayerBlockState(self)
         end
     }
 
@@ -26,6 +29,8 @@ function Player:init(x, y, keyConfigs, animations, isFacing)
     self.isFacing = isFacing
 
     self.animations = animations
+
+    self.isBlocking = false
 
     self.stateMachine:change("idle")
 end
