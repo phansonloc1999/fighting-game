@@ -2,6 +2,8 @@ Class = require("libs/class")
 Anim8 = require("libs/anim8")
 Tick = require("libs/tick")
 
+Healthbar = require 'src.gui.Healthbar'
+
 require("src/Constants")
 require("src/Utils")
 require("src/gameobjects/CollisionBox")

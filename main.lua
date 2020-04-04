@@ -25,6 +25,8 @@ function love.load()
         "left"
     )
 
+		healthbar = Healthbar(player1, player2, 'health')
+
     anim = Animations.daggers.stab
 end
 
@@ -40,6 +42,8 @@ function love.draw()
         player2.currentMove:draw()
     end
 
+		healthbar:draw()
+
     love.graphics.print("FPS: " .. love.timer.getFPS())
 end
 
@@ -49,6 +53,7 @@ function love.update(dt)
     if (dt < 1) then
         player1:update(dt)
         player2:update(dt)
+        healthbar:update(dt)
     end
 
     love.keyboard.keysPressed = {}

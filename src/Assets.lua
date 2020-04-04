@@ -9,6 +9,9 @@ Sprites.daggers.block = lg.newImage("assets/characters/daggers/block.png") -- 1 
 Sprites.daggers.hit = lg.newImage("assets/characters/daggers/hit.png") -- 1 frame
 Sprites.daggers.stab = lg.newImage("assets/characters/daggers/stab.png")
 
+Sprites.healthbar = lg.newImage('assets/healthbar.png')
+
+
 Animations = {}
 
 Animations.daggers = {}
