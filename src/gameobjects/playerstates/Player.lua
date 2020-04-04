@@ -31,20 +31,6 @@ function Player:init(x, y, keyConfigs, animations, isFacing)
 end
 
 function Player:draw()
-    if (DEBUG_COLLISION_BOXES) then
-        love.graphics.setColor(0, 1, 0)
-        love.graphics.setLineWidth(3)
-        for i = 1, #self.hurtBoxes do
-            self.hurtBoxes[i]:draw()
-        end
-        love.graphics.setColor(1, 1, 1)
-        love.graphics.setLineWidth(1)
-    end
-
-    if (self.currentAnimation) then
-        self.currentAnimation.anim:draw(self.currentAnimation.image, self.x, self.y)
-    end
-
     self.stateMachine:draw()
 end
 

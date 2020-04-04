@@ -24,6 +24,19 @@ function PlayerIdleState:exit()
 end
 
 function PlayerIdleState:draw()
+    if (DEBUG_COLLISION_BOXES) then
+        love.graphics.setColor(0, 1, 0)
+        love.graphics.setLineWidth(3)
+        for i = 1, #self.player.hurtBoxes do
+            self.player.hurtBoxes[i]:draw()
+        end
+        love.graphics.setColor(1, 1, 1)
+        love.graphics.setLineWidth(1)
+    end
+
+    if (self.player.currentAnimation) then
+        self.player.currentAnimation.anim:draw(self.player.currentAnimation.image, self.player.x, self.player.y)
+    end
 end
 
 function PlayerIdleState:update(dt)
