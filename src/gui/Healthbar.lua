@@ -16,8 +16,8 @@ function Healthbar:update(dt)
 end
 
 function Healthbar:draw()
-	self:drawHealth(self.leftRatio, 12, 12, 240, 24, 'left')
-	self:drawHealth(self.rightRatio, love.graphics.getWidth() - 240 - 12, 12, 240, 24, 'right')
+	self:drawHealth(self.leftRatio, 12, 12, 240, 24, 1)
+	self:drawHealth(self.rightRatio, love.graphics.getWidth() - 12, 12, 240, 24, -1)
 
 	love.graphics.setColor(1, 1, 1)
 	love.graphics.draw(Sprites.healthbar, 12, 12)
@@ -27,11 +27,10 @@ end
 
 function Healthbar:drawHealth(ratio, x, y, w, h, dir)
 	love.graphics.setColor(self.pickHealthColor(ratio))
-	if dir == 'left' then
-		love.graphics.rectangle('fill', x, y, w * ratio, h)
-	elseif dir == 'right' then
-		love.graphics.rectangle('fill', x + w * (1 - ratio), y, w * ratio, h)
+	if ratio < 0 then
+		ratio = 0
 	end
+	love.graphics.rectangle('fill', x, y, w * ratio * dir, h)
 end
 
 function Healthbar.pickHealthColor(ratio)
