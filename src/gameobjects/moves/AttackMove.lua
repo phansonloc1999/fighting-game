@@ -1,11 +1,14 @@
 ---@class AttackMove : BaseMove
-AttackMove = Class{__includes = BaseMove}
+AttackMove = Class {__includes = BaseMove}
 
-function AttackMove:init(startUp, recovery, hitAdvantage, hitboxes)
+function AttackMove:init(startUp, recovery, hitAdvantage, hitboxes, damage)
     BaseMove.init(self, startUp, recovery)
 
     self.hitAdvantage = hitAdvantage or 1
     self.hitboxes = hitboxes or {} ---@type CollisionBox[]
+
+    assert(damage)
+    self.damage = damage
 end
 
 function AttackMove:draw()
