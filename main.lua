@@ -42,7 +42,7 @@ function love.draw()
 end
 
 function love.update(dt)
-    --- require("libs/lovebird").update()
+    require("libs/lovebird").update()
 
     if (dt < 1) then
         player1:update(dt)
@@ -50,4 +50,5 @@ function love.update(dt)
     end
 
     love.keyboard.keysPressed = {}
+    love.keyboard.keysReleased = {}
 end

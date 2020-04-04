@@ -1,4 +1,4 @@
---- Single keypress per frame detection
+--- Single keypresses, keyreleases per frame detection
 love.keyboard.keysPressed = {}
 
 function love.keyboard.wasPressed(key)
@@ -7,6 +7,16 @@ end
 
 function love.keypressed(key)
     love.keyboard.keysPressed[key] = true
+end
+
+love.keyboard.keysReleased = {}
+
+function love.keyboard.wasReleased(key)
+    return love.keyboard.keysReleased[key]
+end
+
+function love.keyreleased(key)
+    love.keyboard.keysReleased[key] = true
 end
 
 ---@param onLoop boolean

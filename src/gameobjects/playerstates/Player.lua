@@ -21,15 +21,13 @@ function Player:init(x, y, keyConfigs, animations, isFacing)
         end
     }
 
-    self.stateMachine:change("idle")
-
     self.keyConfigs = keyConfigs
 
     self.isFacing = isFacing
 
-    self.animations = cloneAnimations(animations, self.isFacing)
+    self.animations = animations
 
-    self.currentAnimation = self.animations.idle
+    self.stateMachine:change("idle")
 end
 
 function Player:draw()

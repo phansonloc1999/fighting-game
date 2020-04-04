@@ -9,6 +9,14 @@ end
 
 function PlayerIdleState:enter(params)
     table.insert(self.player.hurtBoxes, CollisionBox(self.player.x, self.player.y, 50, 100))
+
+    self.player.currentAnimation = {
+        anim = self.player.animations.idle.anim:clone(),
+        image = self.player.animations.idle.image
+    }
+    if (self.player.isFacing ~= self.player.animations.idle.defaultFacing) then
+        self.player.currentAnimation.anim = self.player.currentAnimation.anim:flipH()
+    end
 end
 
 function PlayerIdleState:exit()
@@ -28,7 +36,11 @@ function PlayerIdleState:update(dt)
         return
     end
 
-    if (love.keyboard.wasPressed(self.player.keyConfigs.left) or love.keyboard.wasPressed(self.player.keyConfigs.right)) then
+    if (love.keyboard.isDown(self.player.keyConfigs.left)) then
+        self.player.isFacing = "left"
+        self.player.stateMachine:change("move")
+    elseif love.keyboard.isDown(self.player.keyConfigs.right) then
+        self.player.isFacing = "right"
         self.player.stateMachine:change("move")
     end
 end
