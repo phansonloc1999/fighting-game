@@ -74,11 +74,13 @@ function PlayerAttackState:checkHitOtherPlayer()
                 if (self.player.currentMove.hitboxes[i]:collidesWith(self.otherPlayer.hurtBoxes[j])) then
                     if self:attackIsNotBlocked() then
                         self.otherPlayer:takeDamage(self.player.currentMove.damage)
-                        self.checkOnce = true
-
                         self.otherPlayer.stateMachine:change("hit")
+
+                        self.checkOnce = true
                         return
-                    elseif (self.otherPlayer.isBlocking and self.player.isFacing ~= self.otherPlayer.isFacing) then
+                    elseif (self:attackIsBlocked()) then
+                        print("Attack blocked at frame " ..self.player.currentMove.elapsedFrames)
+                        self.otherPlayer:takeDamage(self.player.currentMove.damage / 100 * 60)
                         self.checkOnce = true
                         return
                     end
@@ -91,4 +93,8 @@ end
 function PlayerAttackState:attackIsNotBlocked()
     return (self.otherPlayer.isBlocking and self.player.isFacing == self.otherPlayer.isFacing) or
         not self.otherPlayer.isBlocking
+end
+
+function PlayerAttackState:attackIsBlocked()
+    return self.otherPlayer.isBlocking and self.player.isFacing ~= self.otherPlayer.isFacing
 end

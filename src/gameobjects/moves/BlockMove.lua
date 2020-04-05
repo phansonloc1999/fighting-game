@@ -1,10 +1,8 @@
 ---@class BlockMove
 BlockMove = Class{}
 
-function BlockMove:init(startUp, recovery, blockAdvantage)
-    BaseMove.init(self, startUp, recovery)
-    
-    self.blockAdvantage = blockAdvantage
+function BlockMove:init()
+    BaseMove.init(self, 1, 1)
 end
 
 function BlockMove:draw()
@@ -12,8 +10,4 @@ end
 
 function BlockMove:update(dt)
     BaseMove.update(self, dt)
-end
-
-function BlockMove:isFinished()
-    return self.elapsedFrames > self.startUp + self.recovery
 end
