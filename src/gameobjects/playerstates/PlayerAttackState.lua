@@ -12,10 +12,10 @@ function PlayerAttackState:enter(params)
 
     if (self.player.isFacing == "right") then
         self.player.currentMove =
-            AttackMove(20, 1, 1, {CollisionBox(self.player.x + 42, self.player.y + 60, 40, 10)}, 10)
+            AttackMove(3, 15, 1, {CollisionBox(self.player.x + 42, self.player.y + 60, 40, 10)}, 10)
     else
         self.player.currentMove =
-            AttackMove(20, 1, 1, {CollisionBox(self.player.x - 32, self.player.y + 60, 40, 10)}, 10)
+            AttackMove(3, 15, 1, {CollisionBox(self.player.x - 32, self.player.y + 60, 40, 10)}, 10)
     end
 
     self.player.currentAnimation = {
@@ -60,6 +60,12 @@ function PlayerAttackState:update(dt)
 
     self.player.currentMove:update(dt)
 
+    if (self.player.currentMove.elapsedFrames > self.player.currentMove.startUp) then
+        self:checkHitOtherPlayer()
+    end
+end
+
+function PlayerAttackState:checkHitOtherPlayer()
     --- Check whether attack is blocked or not by other player one time per attack
     --- If is not, damage player and skip checking until exit this state
     if not self.checkOnce then
@@ -70,12 +76,10 @@ function PlayerAttackState:update(dt)
                         (self.otherPlayer.isBlocking and self.player.isFacing == self.otherPlayer.isFacing) or
                             not self.otherPlayer.isBlocking
                      then
-                        print("Hit")
                         self.otherPlayer:takeDamage(self.player.currentMove.damage)
                         self.checkOnce = true
                         return
                     elseif (self.otherPlayer.isBlocking and self.player.isFacing ~= self.otherPlayer.isFacing) then
-                        print("Blocked")
                         self.checkOnce = true
                         return
                     end

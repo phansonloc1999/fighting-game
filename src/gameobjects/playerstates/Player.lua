@@ -45,5 +45,4 @@ end
 
 function Player:takeDamage(ammount)
     self.health = self.health - ammount
-    print("Health is "..self.health)
 end
