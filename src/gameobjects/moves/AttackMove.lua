@@ -1,9 +1,10 @@
 ---@class AttackMove : BaseMove
 AttackMove = Class {__includes = BaseMove}
 
-function AttackMove:init(startUp, recovery, hitAdvantage, hitboxes, damage)
+function AttackMove:init(startUp, active, recovery, hitAdvantage, hitboxes, damage)
     BaseMove.init(self, startUp, recovery)
 
+    self.active = active
     self.hitAdvantage = hitAdvantage or 1
     self.hitboxes = hitboxes or {} ---@type CollisionBox[]
 
@@ -28,5 +29,9 @@ function AttackMove:update(dt)
 end
 
 function AttackMove:isFinished()
-    return self.elapsedFrames > self.startUp + self.recovery
+    return self.elapsedFrames > self.startUp + self.active + self.recovery
+end
+
+function AttackMove:isInActive()
+    return self.elapsedFrames > self.startUp and self.elapsedFrames <= self.startUp + self.active
 end
