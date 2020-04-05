@@ -12,10 +12,10 @@ function PlayerAttackState:enter(params)
 
     if (self.player.isFacing == "right") then
         self.player.currentMove =
-            AttackMove(3, 15, 1, {CollisionBox(self.player.x + 42, self.player.y + 60, 40, 10)}, 10)
+            AttackMove(3, 60, 1, {CollisionBox(self.player.x + 42, self.player.y + 60, 40, 10)}, 10)
     else
         self.player.currentMove =
-            AttackMove(3, 15, 1, {CollisionBox(self.player.x - 32, self.player.y + 60, 40, 10)}, 10)
+            AttackMove(3, 60, 1, {CollisionBox(self.player.x - 32, self.player.y + 60, 40, 10)}, 10)
     end
 
     self.player.currentAnimation = {

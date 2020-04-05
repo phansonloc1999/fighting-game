@@ -3,6 +3,7 @@ PlayerHitState = Class{__includes = BaseState}
 
 function PlayerHitState:init(player)
     self.player = player
+    self.otherPlayer = player == player1 and player2 or player1
 end
 
 function PlayerHitState:draw()
@@ -28,9 +29,13 @@ function PlayerHitState:enter(params)
         anim = self.player.animations.hit.anim:clone(),
         image = self.player.animations.hit.image
     }
+
+    self.player.isFacing = self.otherPlayer.isFacing == "left" and "right" or "left"
+
     if (self.player.isFacing ~= self.player.animations.hit.defaultFacing) then
         self.player.currentAnimation.anim = self.player.currentAnimation.anim:flipH()
     end
+
 end
 
 function PlayerHitState:exit()
