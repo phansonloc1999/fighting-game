@@ -13,7 +13,13 @@ function love.load()
         50,
         50,
         {left = "left", right = "right", attack = "j", block = "k"},
-        {idle = Animations.daggers.idle, walk = Animations.daggers.walk, stab = Animations.daggers.stab, block = Animations.daggers.block},
+        {
+            idle = Animations.daggers.idle,
+            walk = Animations.daggers.walk,
+            stab = Animations.daggers.stab,
+            block = Animations.daggers.block,
+            hit = Animations.daggers.hit
+        },
         "right"
     )
     player2 =
@@ -21,11 +27,17 @@ function love.load()
         250,
         50,
         {left = "a", right = "d", attack = "f", block = "g"},
-        {idle = Animations.daggers.idle, walk = Animations.daggers.walk, stab = Animations.daggers.stab, block = Animations.daggers.block},
+        {
+            idle = Animations.daggers.idle,
+            walk = Animations.daggers.walk,
+            stab = Animations.daggers.stab,
+            block = Animations.daggers.block,
+            hit = Animations.daggers.hit
+        },
         "left"
     )
 
-		healthbar = Healthbar(player1, player2, 'health')
+    healthbar = Healthbar(player1, player2, "health")
 
     anim = Animations.daggers.stab
 end
@@ -42,7 +54,7 @@ function love.draw()
         player2.currentMove:draw()
     end
 
-		healthbar:draw()
+    healthbar:draw()
 
     love.graphics.print("FPS: " .. love.timer.getFPS())
 end

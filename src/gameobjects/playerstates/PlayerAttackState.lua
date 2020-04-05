@@ -79,6 +79,8 @@ function PlayerAttackState:checkHitOtherPlayer()
                      then
                         self.otherPlayer:takeDamage(self.player.currentMove.damage)
                         self.checkOnce = true
+
+                        self.otherPlayer.stateMachine:change("hit")
                         return
                     elseif (self.otherPlayer.isBlocking and self.player.isFacing ~= self.otherPlayer.isFacing) then
                         self.checkOnce = true

@@ -21,6 +21,9 @@ function Player:init(x, y, keyConfigs, animations, isFacing)
         end,
         ["block"] = function()
             return PlayerBlockState(self)
+        end,
+        ["hit"] = function()
+            return PlayerHitState(self)
         end
     }
 
