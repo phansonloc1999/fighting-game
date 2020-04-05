@@ -1,23 +1,10 @@
---package.cpath = package.cpath .. ";c:/Users/Administrator/.vscode/extensions/tangzx.emmylua-0.3.28/debugger/emmy/windows/x64/?.dll"
---local dbg = require("emmy_core")
---dbg.tcpListen("localhost", 9966)
+local Game = {}
 
-require("src/Dependencies")
-require("src/Assets")
-
-function love.load()
-    Gamestate.switch(Menu)
-    Gamestate.registerEvents()
-end
-
-function love.update(dt)
-    -- require("libs/lovebird").update()
-end
-
---[[
-function love.load()
+function Game:enter(from, leftInfo, rightInfo)
     Tick.framerate = FPS_LIMIT
+    Tick.rate = 0.03
 
+    -- Init players
     player1 =
         Player(
         50,
@@ -52,7 +39,7 @@ function love.load()
     anim = Animations.daggers.stab
 end
 
-function love.draw()
+function Game:draw()
     player1:draw()
     player2:draw()
 
@@ -69,9 +56,7 @@ function love.draw()
     love.graphics.print("FPS: " .. love.timer.getFPS())
 end
 
-function love.update(dt)
-    -- require("libs/lovebird").update()
-
+function Game:update(dt)
     if (dt < 1) then
         player1:update(dt)
         player2:update(dt)
@@ -81,4 +66,5 @@ function love.update(dt)
     love.keyboard.keysPressed = {}
     love.keyboard.keysReleased = {}
 end
-]]--
+
+return Game

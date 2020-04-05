@@ -1,6 +1,13 @@
-Class = require("libs/class")
-Anim8 = require("libs/anim8")
-Tick = require("libs/tick")
+---- Libraries
+Class     = require("libs/class")
+Anim8     = require("libs/anim8")
+Tick      = require("libs/tick")
+Gamestate = require('libs/gamestate')
+Suit      = require('libs/suit')
+
+---- Game states
+Menu = require 'src.gamestates.Menu'
+Game = require 'src.gamestates.Game'
 
 Healthbar = require 'src.gui.Healthbar'
 
