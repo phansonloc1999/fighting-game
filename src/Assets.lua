@@ -52,6 +52,89 @@ Animations.broadSword.block = {anim = getAnimation(Sprites.broadSword.block, 1, 
 Animations.broadSword.hit = {anim = getAnimation(Sprites.broadSword.hit, 1, 1, "pauseAtEnd"), image = Sprites.broadSword.hit, defaultFacing = "right"}
 end
 
+--[[
+	-- Init a Daggers left attack move
+	  -- In PlayerAttackState.lua, function enter()
+	local data = MoveData.daggers.attack
+	move = Move(
+		data.frame.startUp,
+		data.frame.active,
+		data.frame.recover,
+		1,
+		CollisionBox(
+			data.hitbox.left.x + self.player.x,
+			data.hitbox.left.y + self.player.y,
+			data.hitbox.left.w,
+			data.hitbox.left.h
+		),
+		10
+	)
+]]--
+MoveData = {
+	-- Daggers
+	daggers = {
+		attack = {
+			frame = {
+				startUp = 3,
+				active = 6,
+				recover = 2,
+			},
+			hitbox = {
+				left = {
+					x = -32, y = 60,
+					w = 40, h = 10 
+				},
+				right = {
+					x = 42, y = 60,
+					w = 40, h = 10 
+				}
+			}
+		},
+	},
+	
+	-- SwordShield
+	swordShield = {
+		attack = {
+			frame = {
+				startUp = 3,
+				active = 6,
+				recover = 2,
+			},
+			hitbox = {
+				left = {
+					x = -32, y = 60,
+					w = 40, h = 10 
+				},
+				right = {
+					x = 42, y = 60,
+					w = 40, h = 10 
+				}
+			}
+		},
+	},
+	
+	-- BroadSword
+	broadSword = {
+		attack = {
+			frame = {
+				startUp = 3,
+				active = 6,
+				recover = 2,
+			},
+			hitbox = {
+				left = {
+					x = -32, y = 60,
+					w = 40, h = 10 
+				},
+				right = {
+					x = 42, y = 60,
+					w = 40, h = 10 
+				}
+			}
+		},
+	}
+}
+
 Sprites.environment = {
 	tree1 = lg.newImage('assets/environment/tree1.png'),
 	tree2 = lg.newImage('assets/environment/tree2.png'),
