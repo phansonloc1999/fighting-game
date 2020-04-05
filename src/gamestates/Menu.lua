@@ -81,15 +81,4 @@ function Menu:draw()
 	self.suit:draw()
 end
 
-function drawPreviewAnimation(id, x, y, dir)
-	previewAnimations[dir].daggers:draw(Sprites[id].idle, x, y)
-	--if id == 'daggers' then
-		--previewAnimations[dir].daggers:draw(Sprites.daggers.idle, x, y)
-	--elseif id == 'swordShield' then
-	
-	--elseif id == 'broadSword' then
-	
-	--end
-end
-
 return Menu

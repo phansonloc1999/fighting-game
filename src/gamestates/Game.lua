@@ -11,11 +11,11 @@ function Game:enter(from, leftInfo, rightInfo)
         100,
         {left = "left", right = "right", attack = "j", block = "k"},
         {
-            idle = Animations.daggers.idle,
-            walk = Animations.daggers.walk,
-            stab = Animations.daggers.stab,
-            block = Animations.daggers.block,
-            hit = Animations.daggers.hit
+            idle = Animations[rightInfo.id].idle,
+            walk = Animations[rightInfo.id].walk,
+            stab = Animations[rightInfo.id].stab,
+            block = Animations[rightInfo.id].block,
+            hit = Animations[rightInfo.id].hit
         },
         "right"
     )
@@ -25,11 +25,11 @@ function Game:enter(from, leftInfo, rightInfo)
         100,
         {left = "a", right = "d", attack = "f", block = "g"},
         {
-            idle = Animations.daggers.idle,
-            walk = Animations.daggers.walk,
-            stab = Animations.daggers.stab,
-            block = Animations.daggers.block,
-            hit = Animations.daggers.hit
+            idle = Animations[leftInfo.id].idle,
+            walk = Animations[leftInfo.id].walk,
+            stab = Animations[leftInfo.id].stab,
+            block = Animations[leftInfo.id].block,
+            hit = Animations[leftInfo.id].hit
         },
         "left"
     )
