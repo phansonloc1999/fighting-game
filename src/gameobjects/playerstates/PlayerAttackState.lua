@@ -12,10 +12,10 @@ function PlayerAttackState:enter(params)
 
     if (self.player.isFacing == "right") then
         self.player.currentMove =
-            AttackMove(3, 60, 1, {CollisionBox(self.player.x + 42, self.player.y + 60, 40, 10)}, 10)
+            AttackMove(10, 3, 50, 1, {CollisionBox(self.player.x + 42, self.player.y + 60, 40, 10)}, 10)
     else
         self.player.currentMove =
-            AttackMove(3, 60, 1, {CollisionBox(self.player.x - 32, self.player.y + 60, 40, 10)}, 10)
+            AttackMove(10, 3, 50, 1, {CollisionBox(self.player.x - 32, self.player.y + 60, 40, 10)}, 10)
     end
 
     self.player.currentAnimation = {
@@ -36,11 +36,10 @@ function PlayerAttackState:exit()
 end
 
 function PlayerAttackState:draw()
-		self.player.currentAnimation.anim:draw(
+    self.player.currentAnimation.anim:draw(
         self.player.currentAnimation.image,
         self.player.x + self.player.hurtBoxes[1].width / 2,
-        self.player.y + self.player.hurtBoxes[1].height -
-						self.player.currentAnimation.image:getHeight(),
+        self.player.y + self.player.hurtBoxes[1].height - self.player.currentAnimation.image:getHeight(),
         0,
         1,
         1,
@@ -61,7 +60,7 @@ function PlayerAttackState:update(dt)
 
     self.player.currentMove:update(dt)
 
-    if (self.player.currentMove.elapsedFrames > self.player.currentMove.startUp) then
+    if (self.player.currentMove:isInActive()) then
         self:checkHitOtherPlayer()
     end
 end
@@ -73,10 +72,7 @@ function PlayerAttackState:checkHitOtherPlayer()
         for i = 1, #self.player.currentMove.hitboxes do
             for j = 1, #self.otherPlayer.hurtBoxes do
                 if (self.player.currentMove.hitboxes[i]:collidesWith(self.otherPlayer.hurtBoxes[j])) then
-                    if
-                        (self.otherPlayer.isBlocking and self.player.isFacing == self.otherPlayer.isFacing) or
-                            not self.otherPlayer.isBlocking
-                     then
+                    if self:attackIsNotBlocked() then
                         self.otherPlayer:takeDamage(self.player.currentMove.damage)
                         self.checkOnce = true
 
@@ -90,4 +86,9 @@ function PlayerAttackState:checkHitOtherPlayer()
             end
         end
     end
+end
+
+function PlayerAttackState:attackIsNotBlocked()
+    return (self.otherPlayer.isBlocking and self.player.isFacing == self.otherPlayer.isFacing) or
+        not self.otherPlayer.isBlocking
 end
