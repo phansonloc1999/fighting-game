@@ -18,7 +18,17 @@ function PlayerHitState:draw()
     end
 
     if (self.player.currentAnimation) then
-        self.player.currentAnimation.anim:draw(self.player.currentAnimation.image, self.player.x, self.player.y)
+		    self.player.currentAnimation.anim:draw(
+						self.player.currentAnimation.image,
+						self.player.x + self.player.hurtBoxes[1].width / 2,
+						self.player.y + self.player.hurtBoxes[1].height -
+								self.player.currentAnimation.image:getHeight(),
+						0,
+						1,
+						1,
+						self.player.currentAnimation.image:getWidth() / 2,
+						nil
+				)
     end
 end
 
@@ -29,7 +39,11 @@ function PlayerHitState:enter(params)
         anim = self.player.animations.hit.anim:clone(),
         image = self.player.animations.hit.image
     }
-
+    
+    if self.otherPlayer.isFacing == 'left' then
+		    self.player.currentAnimation.anim:flipH()
+    end
+    
     self.player.isFacing = self.otherPlayer.isFacing == "left" and "right" or "left"
 end
 
