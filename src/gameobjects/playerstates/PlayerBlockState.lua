@@ -47,8 +47,7 @@ function PlayerBlockState:update(dt)
 
     self.player.currentMove:update(dt)
 
-    if (self.player.currentMove:isFinished()) then
+    if (love.keyboard.wasReleased(self.player.keyConfigs.block)) then
         self.player.stateMachine:change("idle")
-        return
     end
 end
