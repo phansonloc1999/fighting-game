@@ -5,6 +5,10 @@
 require("src/Dependencies")
 require("src/Assets")
 
+---- Game states
+Menu = require 'src.gamestates.Menu'
+Game = require 'src.gamestates.Game'
+
 function love.load()
     Gamestate.switch(Menu)
     Gamestate.registerEvents()

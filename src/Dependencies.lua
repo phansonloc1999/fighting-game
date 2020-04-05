@@ -5,10 +5,6 @@ Tick      = require("libs/tick")
 Gamestate = require('libs/gamestate')
 Suit      = require('libs/suit')
 
----- Game states
-Menu = require 'src.gamestates.Menu'
-Game = require 'src.gamestates.Game'
-
 Healthbar = require 'src.gui.Healthbar'
 
 require("src/Constants")
