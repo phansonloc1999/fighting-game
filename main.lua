@@ -11,7 +11,7 @@ function love.load()
     player1 =
         Player(
         50,
-        50,
+        100,
         {left = "left", right = "right", attack = "j", block = "k"},
         {
             idle = Animations.daggers.idle,
@@ -25,7 +25,7 @@ function love.load()
     player2 =
         Player(
         250,
-        50,
+        100,
         {left = "a", right = "d", attack = "f", block = "g"},
         {
             idle = Animations.daggers.idle,
