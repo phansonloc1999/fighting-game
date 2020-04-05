@@ -12,10 +12,10 @@ function PlayerAttackState:enter(params)
 
     if (self.player.isFacing == "right") then
         self.player.currentMove =
-            AttackMove(20, 1, 1, {CollisionBox(self.player.x + 42, self.player.y + 60, 40, 10)}, 10)
+            AttackMove(20, 1, 1, {CollisionBox(self.player.x + 42, self.player.y + 65, 40, 10)}, 10)
     else
         self.player.currentMove =
-            AttackMove(20, 1, 1, {CollisionBox(self.player.x - 32, self.player.y + 60, 40, 10)}, 10)
+            AttackMove(20, 1, 1, {CollisionBox(self.player.x - 32, self.player.y + 65, 40, 10)}, 10)
     end
 
     self.player.currentAnimation = {
@@ -36,15 +36,16 @@ function PlayerAttackState:exit()
 end
 
 function PlayerAttackState:draw()
-    self.player.currentAnimation.anim:draw(
+		self.player.currentAnimation.anim:draw(
         self.player.currentAnimation.image,
         self.player.x + self.player.hurtBoxes[1].width / 2,
-        self.player.y + self.player.hurtBoxes[1].height / 2,
+        self.player.y + self.player.hurtBoxes[1].height -
+						self.player.currentAnimation.image:getHeight(),
         0,
         1,
         1,
         self.player.currentAnimation.image:getWidth() / 3 / 2,
-        self.player.currentAnimation.image:getHeight() / 2 + 2
+        nil
     )
 end
 
