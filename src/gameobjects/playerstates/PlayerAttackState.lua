@@ -36,15 +36,16 @@ function PlayerAttackState:exit()
 end
 
 function PlayerAttackState:draw()
-    self.player.currentAnimation.anim:draw(
+		self.player.currentAnimation.anim:draw(
         self.player.currentAnimation.image,
         self.player.x + self.player.hurtBoxes[1].width / 2,
-        self.player.y + self.player.hurtBoxes[1].height / 2,
+        self.player.y + self.player.hurtBoxes[1].height -
+						self.player.currentAnimation.image:getHeight(),
         0,
         1,
         1,
         self.player.currentAnimation.image:getWidth() / 3 / 2,
-        self.player.currentAnimation.image:getHeight() / 2 + 2
+        nil
     )
 end
 
