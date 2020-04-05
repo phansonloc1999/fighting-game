@@ -31,23 +31,23 @@ Sprites.healthbar = lg.newImage('assets/healthbar.png')
 Animations = {}
 
 Animations.daggers = {}
-Animations.daggers.idle = {anim = getAnimation(Sprites.daggers.idle, 2, 0.22, "pauseAtEnd"), image = Sprites.daggers.idle, defaultFacing = "left"}
-Animations.daggers.walk = {anim = getAnimation(Sprites.daggers.walk, 4, 0.14, "pauseAtEnd"), image = Sprites.daggers.walk, defaultFacing = "left"}
-Animations.daggers.stab = {anim = getAnimation(Sprites.daggers.stab, 3, {0.1, 0.16, 0.1}, "pauseAtEnd"), image = Sprites.daggers.stab, defaultFacing = "left"}
+Animations.daggers.idle = {anim = getAnimation(Sprites.daggers.idle, 2, 0.22, nil), image = Sprites.daggers.idle, defaultFacing = "left"}
+Animations.daggers.walk = {anim = getAnimation(Sprites.daggers.walk, 4, 0.14, nil), image = Sprites.daggers.walk, defaultFacing = "left"}
+Animations.daggers.stab = {anim = getAnimation(Sprites.daggers.stab, 3, {0.05, 0.1, 0.05}, "pauseAtEnd"), image = Sprites.daggers.stab, defaultFacing = "left"}
 Animations.daggers.block = {anim = getAnimation(Sprites.daggers.block, 1, 1, "pauseAtEnd"), image = Sprites.daggers.block, defaultFacing = "left"}
 Animations.daggers.hit = {anim = getAnimation(Sprites.daggers.hit, 1, 1, "pauseAtEnd"), image = Sprites.daggers.hit, defaultFacing = "right"}
 
 Animations.swordShield = {}
-Animations.swordShield.idle = {anim = getAnimation(Sprites.swordShield.idle, 2, 0.22, "pauseAtEnd"), image = Sprites.swordShield.idle, defaultFacing = "left"}
-Animations.swordShield.walk = {anim = getAnimation(Sprites.swordShield.walk, 4, 0.14, "pauseAtEnd"), image = Sprites.swordShield.walk, defaultFacing = "left"}
-Animations.swordShield.stab = {anim = getAnimation(Sprites.swordShield.stab, 3, {0.1, 0.16, 0.1}, "pauseAtEnd"), image = Sprites.swordShield.stab, defaultFacing = "left"}
+Animations.swordShield.idle = {anim = getAnimation(Sprites.swordShield.idle, 2, 0.22, nil), image = Sprites.swordShield.idle, defaultFacing = "left"}
+Animations.swordShield.walk = {anim = getAnimation(Sprites.swordShield.walk, 4, 0.14, nil), image = Sprites.swordShield.walk, defaultFacing = "left"}
+Animations.swordShield.stab = {anim = getAnimation(Sprites.swordShield.stab, 3, {0.05, 0.1, 0.05}, "pauseAtEnd"), image = Sprites.swordShield.stab, defaultFacing = "left"}
 Animations.swordShield.block = {anim = getAnimation(Sprites.swordShield.block, 1, 1, "pauseAtEnd"), image = Sprites.swordShield.block, defaultFacing = "left"}
 Animations.swordShield.hit = {anim = getAnimation(Sprites.swordShield.hit, 1, 1, "pauseAtEnd"), image = Sprites.swordShield.hit, defaultFacing = "right"}
 
 Animations.broadSword = {}
-Animations.broadSword.idle = {anim = getAnimation(Sprites.broadSword.idle, 2, 0.22, "pauseAtEnd"), image = Sprites.broadSword.idle, defaultFacing = "left"}
-Animations.broadSword.walk = {anim = getAnimation(Sprites.broadSword.walk, 4, 0.14, "pauseAtEnd"), image = Sprites.broadSword.walk, defaultFacing = "left"}
-Animations.broadSword.stab = {anim = getAnimation(Sprites.broadSword.stab, 3, {0.1, 0.16, 0.1}, "pauseAtEnd"), image = Sprites.broadSword.stab, defaultFacing = "left"}
+Animations.broadSword.idle = {anim = getAnimation(Sprites.broadSword.idle, 2, 0.22, nil), image = Sprites.broadSword.idle, defaultFacing = "left"}
+Animations.broadSword.walk = {anim = getAnimation(Sprites.broadSword.walk, 4, 0.14, nil), image = Sprites.broadSword.walk, defaultFacing = "left"}
+Animations.broadSword.stab = {anim = getAnimation(Sprites.broadSword.stab, 3, {0.05, 0.1, 0.05}, "pauseAtEnd"), image = Sprites.broadSword.stab, defaultFacing = "left"}
 Animations.broadSword.block = {anim = getAnimation(Sprites.broadSword.block, 1, 1, "pauseAtEnd"), image = Sprites.broadSword.block, defaultFacing = "left"}
 Animations.broadSword.hit = {anim = getAnimation(Sprites.broadSword.hit, 1, 1, "pauseAtEnd"), image = Sprites.broadSword.hit, defaultFacing = "right"}
 end

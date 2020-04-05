@@ -31,11 +31,6 @@ function PlayerHitState:enter(params)
     }
 
     self.player.isFacing = self.otherPlayer.isFacing == "left" and "right" or "left"
-
-    if (self.player.isFacing ~= self.player.animations.hit.defaultFacing) then
-        self.player.currentAnimation.anim = self.player.currentAnimation.anim:flipH()
-    end
-
 end
 
 function PlayerHitState:exit()
