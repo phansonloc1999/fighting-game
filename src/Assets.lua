@@ -1,5 +1,6 @@
 local lg = love.graphics
 
+do
 Sprites = {}
 
 Sprites.daggers = {}
@@ -49,3 +50,17 @@ Animations.broadSword.walk = {anim = getAnimation(Sprites.broadSword.walk, 4, 0.
 Animations.broadSword.stab = {anim = getAnimation(Sprites.broadSword.stab, 3, {0.1, 0.16, 0.1}, "pauseAtEnd"), image = Sprites.broadSword.stab, defaultFacing = "left"}
 Animations.broadSword.block = {anim = getAnimation(Sprites.broadSword.block, 1, 1, "pauseAtEnd"), image = Sprites.broadSword.block, defaultFacing = "left"}
 Animations.broadSword.hit = {anim = getAnimation(Sprites.broadSword.hit, 1, 1, "pauseAtEnd"), image = Sprites.broadSword.hit, defaultFacing = "right"}
+end
+
+Sprites.environment = {
+	tree1 = lg.newImage('assets/environment/tree1.png'),
+	tree2 = lg.newImage('assets/environment/tree2.png'),
+	
+	bush1 = lg.newImage('assets/environment/bush1.png'),
+	bush2 = lg.newImage('assets/environment/bush2.png'),
+	bush3 = lg.newImage('assets/environment/bush3.png'),
+	
+	twig1 = lg.newImage('assets/environment/twig1.png'),
+	twig2 = lg.newImage('assets/environment/twig2.png'),
+	twig3 = lg.newImage('assets/environment/twig3.png'),
+}
