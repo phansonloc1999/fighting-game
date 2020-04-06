@@ -7,6 +7,7 @@ function Game:enter(from, leftInfo, rightInfo)
     -- Init players
     player1 =
         Player(
+        leftInfo.id,
         60,
         170,
         {left = "a", right = "d", attack = "f", block = "g"},
@@ -21,6 +22,7 @@ function Game:enter(from, leftInfo, rightInfo)
     )
     player2 =
         Player(
+        rightInfo.id,
         436,
         170,
         {left = "left", right = "right", attack = "j", block = "k"},
@@ -40,7 +42,7 @@ function Game:enter(from, leftInfo, rightInfo)
 end
 
 function Game:draw()
-		self:drawBackground()
+    self:drawBackground()
 
     player1:draw()
     player2:draw()
@@ -61,6 +63,8 @@ function Game:draw()
 end
 
 function Game:update(dt)
+    -- require("libs/lovebird").update()
+
     if (dt < 1) then
         player1:update(dt)
         player2:update(dt)
@@ -72,33 +76,33 @@ function Game:update(dt)
 end
 
 function Game:drawBackground()
-	local lg = love.graphics
+    local lg = love.graphics
 
-	lg.setColor(1, 1, 1, 0.15)
-	lg.setLineWidth(2)
-	lg.line(0, 180, 560, 180)
-	lg.setColor(1, 1, 1)
+    lg.setColor(1, 1, 1, 0.15)
+    lg.setLineWidth(2)
+    lg.line(0, 180, 560, 180)
+    lg.setColor(1, 1, 1)
 
-	lg.draw(Sprites.environment.tree1, 110, 115)
-	lg.draw(Sprites.environment.tree2, 300, 105)
+    lg.draw(Sprites.environment.tree1, 110, 115)
+    lg.draw(Sprites.environment.tree2, 300, 105)
 
-	lg.draw(Sprites.environment.twig2, 240, 206)
-	lg.draw(Sprites.environment.twig1, 428, 188)
+    lg.draw(Sprites.environment.twig2, 240, 206)
+    lg.draw(Sprites.environment.twig1, 428, 188)
 
-	lg.setColor(1, 1, 1, 0.4)
-	lg.setLineWidth(2)
-	lg.line(0, 235, 560, 235)
-	lg.setColor(1, 1, 1)
-	
-	lg.draw(Sprites.environment.bush1, 260, 225)
+    lg.setColor(1, 1, 1, 0.4)
+    lg.setLineWidth(2)
+    lg.line(0, 235, 560, 235)
+    lg.setColor(1, 1, 1)
+
+    lg.draw(Sprites.environment.bush1, 260, 225)
 end
 
 function Game:drawForeground()
-	local lg = love.graphics
+    local lg = love.graphics
 
-	lg.setColor(1, 1, 1)
-	lg.draw(Sprites.environment.bush2, 40, 274)
-	lg.draw(Sprites.environment.bush3, 345, 264)
+    lg.setColor(1, 1, 1)
+    lg.draw(Sprites.environment.bush2, 40, 274)
+    lg.draw(Sprites.environment.bush3, 345, 264)
 end
 
 return Game

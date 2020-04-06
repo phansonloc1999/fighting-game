@@ -94,7 +94,8 @@ MoveData = {
 					x = 42, y = 60,
 					w = 40, h = 10 
 				}
-			}
+			},
+			damage = 10
 		},
 	},
 	
@@ -115,7 +116,8 @@ MoveData = {
 					x = 42, y = 60,
 					w = 40, h = 10 
 				}
-			}
+			},
+			damage = 30
 		},
 	},
 	
@@ -136,7 +138,8 @@ MoveData = {
 					x = 42, y = 60,
 					w = 40, h = 10 
 				}
-			}
+			},
+			damage = 50
 		},
 	}
 }
@@ -152,4 +155,16 @@ Sprites.environment = {
 	twig1 = lg.newImage('assets/environment/twig1.png'),
 	twig2 = lg.newImage('assets/environment/twig2.png'),
 	twig3 = lg.newImage('assets/environment/twig3.png'),
+}
+
+CharacterStats = {
+	daggers = {
+		speed = 150
+	},
+	swordShield = {
+		speed = 120
+	},
+	broadSword = {
+		speed = 100
+	}
 }
