@@ -59,14 +59,14 @@ end
 
 function Menu:mainMenu(dt)
 	-- Start button
-	if self.suit:Button('START', {font = Fonts.medium, id = 0}, 240, 220, 80, 30).hovered then
+	if self.suit:Button('BATTLE', {font = Fonts.medium, id = 0}, 222, 160, 100, 30).hovered then
 		self.suitAnimation[0].len = self.suitAnimation[0].len + 400 * dt
 		if self.suitAnimation[0].len > 80 then self.suitAnimation[0].len = 80 end
 	else
 		self.suitAnimation[0].len = self.suitAnimation[0].len - 400 * dt
 		if self.suitAnimation[0].len < 0 then self.suitAnimation[0].len = 0 end
 	end
-	if self.suit:Button('START', {id = 0}, 240, 220, 80, 30).hit then
+	if self.suit:Button('BATTLE', {font = Fonts.medium, id = 0}, 222, 160, 100, 30).hit then
 		Gamestate.switch(Game, self.leftInfo, self.rightInfo)
 	end
 	
@@ -122,8 +122,8 @@ function Menu:draw()
 	self.suit:draw()
 	---- Suit animation
 	love.graphics.setLineWidth(2)
-	love.graphics.line(240 + 80/2 - self.suitAnimation[0].len/2, 250,
-			240 + 80/2 + self.suitAnimation[0].len/2, 250)
+	love.graphics.line(230 + 80/2 - self.suitAnimation[0].len/2, 188,
+			230 + 80/2 + self.suitAnimation[0].len/2, 188)
 	for i = 1, 3 do
 		love.graphics.line(10 + 100/2 - self.suitAnimation[i].len/2, 40 * i + 30,
 			10 + 120/2 + self.suitAnimation[i].len/2, 40 * i + 30)
@@ -132,6 +132,10 @@ function Menu:draw()
 		love.graphics.line(420 + 100/2 - self.suitAnimation[i].len/2, 40 * (i-3) + 30,
 			420 + 120/2 + self.suitAnimation[i].len/2, 40 * (i-3) + 30)
 	end
+	
+	love.graphics.setFont(Fonts.gigantic)
+	love.graphics.setColor(1, 1, 0.3)
+	love.graphics.printf('GLADIATORS', 540/2 - 200, 225, 400, 'center')
 end
 
 return Menu
