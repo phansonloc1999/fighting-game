@@ -2,9 +2,9 @@ local Game = {}
 
 function Game:enter(from, leftInfo, rightInfo)
     self._info = {
-			left = leftInfo,
-			right = rightInfo
-		}
+        left = leftInfo,
+        right = rightInfo
+    }
 
     -- Init players
     player1 =
@@ -12,13 +12,14 @@ function Game:enter(from, leftInfo, rightInfo)
         leftInfo.id,
         60,
         170,
-        {left = "a", right = "d", attack = "c", block = "v"},
+        {left = "a", right = "d", attack = "c", block = "v", attack1 = "f"},
         {
             idle = Animations[leftInfo.id].idle,
             walk = Animations[leftInfo.id].walk,
-            stab = Animations[leftInfo.id].stab,
+            attack = Animations[leftInfo.id].attack,
             block = Animations[leftInfo.id].block,
-            hit = Animations[leftInfo.id].hit
+            hit = Animations[leftInfo.id].hit,
+            attack1 = Animations[leftInfo.id].attack1
         },
         "right",
         1
@@ -28,13 +29,14 @@ function Game:enter(from, leftInfo, rightInfo)
         rightInfo.id,
         436,
         170,
-        {left = "left", right = "right", attack = "/", block = "."},
+        {left = "left", right = "right", attack = "/", block = ".", attack1 = ";"},
         {
             idle = Animations[rightInfo.id].idle,
             walk = Animations[rightInfo.id].walk,
-            stab = Animations[rightInfo.id].stab,
+            attack = Animations[rightInfo.id].attack,
             block = Animations[rightInfo.id].block,
-            hit = Animations[rightInfo.id].hit
+            hit = Animations[rightInfo.id].hit,
+            attack1 = Animations[rightInfo.id].attack1
         },
         "left",
         2
@@ -42,8 +44,6 @@ function Game:enter(from, leftInfo, rightInfo)
 
     healthbar = Healthbar(player1, player2, "health")
 
-    anim = Animations.daggers.stab
-    
     self.timer = Timer.new()
 end
 
@@ -64,27 +64,27 @@ function Game:draw()
     self:drawForeground()
 
     healthbar:draw()
-    
+
     love.graphics.setFont(Fonts.large)
     love.graphics.setColor(0, 1, 1)
-    love.graphics.print('P1', 18, 40)
+    love.graphics.print("P1", 18, 40)
     love.graphics.setColor(1, 1, 0)
-    love.graphics.print('P2', 492, 40)
+    love.graphics.print("P2", 492, 40)
 
-	  love.graphics.setColor(1, 1, 1)
-		love.graphics.setFont(Fonts.small)
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.setFont(Fonts.small)
     love.graphics.print("FPS: " .. love.timer.getFPS())
 end
 
 function Game:update(dt)
     -- require("libs/lovebird").update()
-    
-	if dt < 1 / (FPS_LIMIT / 2) then
-		love.timer.sleep(1 / (FPS_LIMIT / 2) - dt)
-	end
+
+    if dt < 1 / (FPS_LIMIT / 2) then
+        love.timer.sleep(1 / (FPS_LIMIT / 2) - dt)
+    end
 
     if (dt < 1) then
-		self.timer:update(dt)
+        self.timer:update(dt)
         player1:update(dt)
         player2:update(dt)
         healthbar:update(dt)

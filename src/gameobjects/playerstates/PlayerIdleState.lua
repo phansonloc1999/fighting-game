@@ -33,17 +33,16 @@ function PlayerIdleState:draw()
     end
 
     if (self.player.currentAnimation) then
-				self.player.currentAnimation.anim:draw(
-						self.player.currentAnimation.image,
-						self.player.x + self.player.hurtBoxes[1].width / 2,
-						self.player.y + self.player.hurtBoxes[1].height -
-								self.player.currentAnimation.image:getHeight(),
-						0,
-						1,
-						1,
-						self.player.currentAnimation.image:getWidth() / 2 / 2,
-						nil
-				)
+        self.player.currentAnimation.anim:draw(
+            self.player.currentAnimation.image,
+            self.player.x + self.player.hurtBoxes[1].width / 2,
+            self.player.y + self.player.hurtBoxes[1].height - self.player.currentAnimation.image:getHeight(),
+            0,
+            1,
+            1,
+            self.player.currentAnimation.image:getWidth() / 2 / 2,
+            nil
+        )
     end
 end
 
@@ -53,7 +52,11 @@ function PlayerIdleState:update(dt)
     end
 
     if (love.keyboard.wasPressed(self.player.keyConfigs.attack)) then
-        self.player.stateMachine:change("attack", { moveData = self.player.moveData.attack })
+        self.player.stateMachine:change("attack", {attackKeyConf = "attack", moveData = self.player.moveData.attack})
+        return
+    end
+    if (love.keyboard.wasPressed(self.player.keyConfigs.attack1)) then
+        self.player.stateMachine:change("attack", {attackKeyConf = "attack1", moveData = self.player.moveData.attack1})
         return
     end
 

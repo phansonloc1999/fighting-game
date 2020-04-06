@@ -14,10 +14,10 @@ function PlayerAttackState:enter(params)
         self:getAttackMove(params.moveData.frame, params.moveData.hitbox, params.moveData.damage, self.player.isFacing)
 
     self.player.currentAnimation = {
-        anim = self.player.animations.stab.anim:clone(),
-        image = self.player.animations.stab.image
+        anim = self.player.animations[params.attackKeyConf].anim:clone(),
+        image = self.player.animations[params.attackKeyConf].image
     }
-    if (self.player.isFacing ~= self.player.animations.stab.defaultFacing) then
+    if (self.player.isFacing ~= self.player.animations.attack.defaultFacing) then
         self.player.currentAnimation.anim = self.player.currentAnimation.anim:flipH()
     end
 

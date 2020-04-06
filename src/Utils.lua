@@ -20,9 +20,9 @@ function love.keyreleased(key)
 end
 
 ---@param onLoop boolean
-function getAnimation(image, columnCount, interval, onLoop)
+function getAnimation(image, columnCount, intervals, onLoop)
     local grid = Anim8.newGrid(image:getWidth() / columnCount, image:getHeight(), image:getWidth(), image:getHeight())
-    return Anim8.newAnimation(grid("1-" .. columnCount, 1), interval, onLoop)
+    return Anim8.newAnimation(grid("1-" .. columnCount, 1), intervals, onLoop)
 end
 
 --- Clone from source animations table of which each element is { anim = anim8Animation, image = love2dImage }
