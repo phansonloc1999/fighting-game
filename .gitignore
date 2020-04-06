@@ -1,1 +1,4 @@
 .vscode
+release
+boon build windows.bat
+Boon.toml
