@@ -1,9 +1,6 @@
 local Game = {}
 
 function Game:enter(from, leftInfo, rightInfo)
-    Tick.framerate = FPS_LIMIT
-    Tick.rate = 0.03
-    
     self._info = {
 			left = leftInfo,
 			right = rightInfo
@@ -81,9 +78,13 @@ end
 
 function Game:update(dt)
     -- require("libs/lovebird").update()
+    
+	if dt < 1 / (FPS_LIMIT / 2) then
+		love.timer.sleep(1 / (FPS_LIMIT / 2) - dt)
+	end
 
     if (dt < 1) then
-				self.timer:update(dt)
+		self.timer:update(dt)
         player1:update(dt)
         player2:update(dt)
         healthbar:update(dt)
