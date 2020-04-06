@@ -1,9 +1,6 @@
 local GameOver = {}
 
 function GameOver:enter(from, leftInfo, rightInfo, loser)
-	Tick.framerate = -1
-	Tick.rate = 0.005
-
 	self.from = from
 
 	self._leftInfo = leftInfo
