@@ -74,8 +74,8 @@ function PlayerAttackState:checkHitOtherPlayer()
                         self.checkedOnce = true
                         return
                     elseif (self:attackIsBlocked()) then
-                        local reducedDamage = self.player.currentMove.damage / 100 * 40
-                        self.otherPlayer:takeDamage(reducedDamage)
+                        local reducedDamageTaken = self.player.currentMove.damage / 100 * 15
+                        self.otherPlayer:takeDamage(reducedDamageTaken)
                         self.checkedOnce = true
                         return
                     end
