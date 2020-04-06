@@ -158,7 +158,7 @@ CharacterStats = {
 	swordShield = {
 		speed = 120
 	},
-	boardSword = {
+	broadSword = {
 		speed = 100
 	}
 }
