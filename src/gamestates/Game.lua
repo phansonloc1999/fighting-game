@@ -3,6 +3,11 @@ local Game = {}
 function Game:enter(from, leftInfo, rightInfo)
     Tick.framerate = FPS_LIMIT
     Tick.rate = 0.03
+    
+    self._info = {
+			left = leftInfo,
+			right = rightInfo
+		}
 
     -- Init players
     player1 =
@@ -18,7 +23,8 @@ function Game:enter(from, leftInfo, rightInfo)
             block = Animations[leftInfo.id].block,
             hit = Animations[leftInfo.id].hit
         },
-        "right"
+        "right",
+        1
     )
     player2 =
         Player(
@@ -33,12 +39,15 @@ function Game:enter(from, leftInfo, rightInfo)
             block = Animations[rightInfo.id].block,
             hit = Animations[rightInfo.id].hit
         },
-        "left"
+        "left",
+        2
     )
 
     healthbar = Healthbar(player1, player2, "health")
 
     anim = Animations.daggers.stab
+    
+    self.timer = Timer.new()
 end
 
 function Game:draw()
@@ -58,7 +67,15 @@ function Game:draw()
     self:drawForeground()
 
     healthbar:draw()
+    
+    love.graphics.setFont(Fonts.large)
+    love.graphics.setColor(0, 1, 1)
+    love.graphics.print('P1', 18, 40)
+    love.graphics.setColor(1, 1, 0)
+    love.graphics.print('P2', 492, 40)
 
+	  love.graphics.setColor(1, 1, 1)
+		love.graphics.setFont(Fonts.small)
     love.graphics.print("FPS: " .. love.timer.getFPS())
 end
 
@@ -66,6 +83,7 @@ function Game:update(dt)
     -- require("libs/lovebird").update()
 
     if (dt < 1) then
+				self.timer:update(dt)
         player1:update(dt)
         player2:update(dt)
         healthbar:update(dt)

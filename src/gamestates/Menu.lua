@@ -103,6 +103,8 @@ function Menu:mainMenu(dt)
 end
 
 function Menu:draw()
+	love.graphics.setColor(1, 1, 1)
+
 	---- Preview animation
 	previewAnimations['left'][self.leftInfo.id]:draw(
 		Sprites[self.leftInfo.id].idle,

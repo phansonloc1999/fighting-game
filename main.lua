@@ -8,6 +8,7 @@ require("src/Assets")
 ---- Game states
 Menu = require 'src.gamestates.Menu'
 Game = require 'src.gamestates.Game'
+GameOver = require 'src.gamestates.GameOver'
 
 function love.load()
     Gamestate.switch(Menu)
@@ -17,3 +18,10 @@ end
 function love.update(dt)
 
 end
+
+---- TODO
+-- Frame and hitbox data (probably hand it over to my team mate)
+-- Add game over frame:
+--- Play again with the same characters
+--- Main menu
+-- Port to web

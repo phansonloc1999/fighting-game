@@ -1,7 +1,7 @@
 ---@class Player
 Player = Class {}
 
-function Player:init(charId, x, y, keyConfigs, animations, isFacing)
+function Player:init(charId, x, y, keyConfigs, animations, isFacing, index)
     self.x, self.y = x, y
     self.health = 100
     self.speed = CharacterStats[charId].speed
@@ -38,6 +38,8 @@ function Player:init(charId, x, y, keyConfigs, animations, isFacing)
     self.isBlocking = false
 
     self.stateMachine:change("idle")
+    
+    self.index = index
 end
 
 function Player:draw()
@@ -50,6 +52,16 @@ end
 
 function Player:takeDamage(ammount)
     self.health = self.health - ammount
+    if self.health <= 0 then
+				Gamestate.current().timer:after(
+						0.06,
+						function()
+								local left = Gamestate.current()._info.left
+								local right = Gamestate.current()._info.right 
+						    Gamestate.switch(GameOver, left, right, self.index)
+						end
+				)
+    end
 end
 
 function Player:loadCharMoveData(charId)
