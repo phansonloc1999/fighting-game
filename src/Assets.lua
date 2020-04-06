@@ -46,14 +46,14 @@ Animations.daggers.hit = {anim = getAnimation(Sprites.daggers.hit, 1, 0.3, "paus
 Animations.swordShield = {}
 Animations.swordShield.idle = {anim = getAnimation(Sprites.swordShield.idle, 2, 0.22, nil), image = Sprites.swordShield.idle, defaultFacing = "left"}
 Animations.swordShield.walk = {anim = getAnimation(Sprites.swordShield.walk, 4, 0.14, nil), image = Sprites.swordShield.walk, defaultFacing = "left"}
-Animations.swordShield.stab = {anim = getAnimation(Sprites.swordShield.stab, 3, {0.05, 0.1, 0.05}, "pauseAtEnd"), image = Sprites.swordShield.stab, defaultFacing = "left"}
+Animations.swordShield.stab = {anim = getAnimation(Sprites.swordShield.stab, 3, {0.08, 0.116, 0.1}, "pauseAtEnd"), image = Sprites.swordShield.stab, defaultFacing = "left"}
 Animations.swordShield.block = {anim = getAnimation(Sprites.swordShield.block, 1, 1, "pauseAtEnd"), image = Sprites.swordShield.block, defaultFacing = "left"}
 Animations.swordShield.hit = {anim = getAnimation(Sprites.swordShield.hit, 1, 0.3, "pauseAtEnd"), image = Sprites.swordShield.hit, defaultFacing = "right"}
 
 Animations.broadSword = {}
 Animations.broadSword.idle = {anim = getAnimation(Sprites.broadSword.idle, 2, 0.22, nil), image = Sprites.broadSword.idle, defaultFacing = "left"}
 Animations.broadSword.walk = {anim = getAnimation(Sprites.broadSword.walk, 4, 0.14, nil), image = Sprites.broadSword.walk, defaultFacing = "left"}
-Animations.broadSword.stab = {anim = getAnimation(Sprites.broadSword.stab, 3, {0.05, 0.1, 0.05}, "pauseAtEnd"), image = Sprites.broadSword.stab, defaultFacing = "left"}
+Animations.broadSword.stab = {anim = getAnimation(Sprites.broadSword.stab, 3, {0.116, 0.084, 0.15}, "pauseAtEnd"), image = Sprites.broadSword.stab, defaultFacing = "left"}
 Animations.broadSword.block = {anim = getAnimation(Sprites.broadSword.block, 1, 1, "pauseAtEnd"), image = Sprites.broadSword.block, defaultFacing = "left"}
 Animations.broadSword.hit = {anim = getAnimation(Sprites.broadSword.hit, 1, 0.3, "pauseAtEnd"), image = Sprites.broadSword.hit, defaultFacing = "right"}
 end
@@ -95,7 +95,7 @@ MoveData = {
 					w = 40, h = 10 
 				}
 			},
-			damage = 10
+			damage = 15
 		},
 	},
 	
@@ -103,9 +103,9 @@ MoveData = {
 	swordShield = {
 		attack = {
 			frame = {
-				startUp = 3,
-				active = 6,
-				recover = 2,
+				startUp = 5,
+				active = 7,
+				recover = 4,
 			},
 			hitbox = {
 				left = {
@@ -117,7 +117,7 @@ MoveData = {
 					w = 40, h = 10 
 				}
 			},
-			damage = 30
+			damage = 20
 		},
 	},
 	
@@ -125,21 +125,21 @@ MoveData = {
 	broadSword = {
 		attack = {
 			frame = {
-				startUp = 3,
-				active = 6,
-				recover = 2,
+				startUp = 7,
+				active = 5,
+				recover = 6,
 			},
 			hitbox = {
 				left = {
-					x = -32, y = 60,
-					w = 40, h = 10 
+					x = -56, y = 60,
+					w = 60, h = 10 
 				},
 				right = {
-					x = 42, y = 60,
-					w = 40, h = 10 
+					x = 52, y = 60,
+					w = 60, h = 10 
 				}
 			},
-			damage = 50
+			damage = 25
 		},
 	}
 }
