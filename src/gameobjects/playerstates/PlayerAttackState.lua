@@ -4,7 +4,7 @@ PlayerAttackState = Class {__includes = BaseState}
 function PlayerAttackState:init(player)
     self.player = player ---@type Player
     self.otherPlayer = player == player1 and player2 or player1
-    self.checkOnce = false
+    self.checkedOnce = false
 end
 
 function PlayerAttackState:enter(params)
@@ -21,7 +21,7 @@ function PlayerAttackState:enter(params)
         self.player.currentAnimation.anim = self.player.currentAnimation.anim:flipH()
     end
 
-    self.checkOnce = false
+    self.checkedOnce = false
 end
 
 function PlayerAttackState:exit()
@@ -63,7 +63,7 @@ end
 function PlayerAttackState:checkHitOtherPlayer()
     --- Check whether attack is blocked or not by other player one time per attack
     --- If is not, damage player and skip checking until exit this state
-    if not self.checkOnce then
+    if not self.checkedOnce then
         for i = 1, #self.player.currentMove.hitboxes do
             for j = 1, #self.otherPlayer.hurtBoxes do
                 if (self.player.currentMove.hitboxes[i]:collidesWith(self.otherPlayer.hurtBoxes[j])) then
@@ -71,11 +71,12 @@ function PlayerAttackState:checkHitOtherPlayer()
                         self.otherPlayer:takeDamage(self.player.currentMove.damage)
                         self.otherPlayer.stateMachine:change("hit")
 
-                        self.checkOnce = true
+                        self.checkedOnce = true
                         return
                     elseif (self:attackIsBlocked()) then
-                        self.otherPlayer:takeDamage(self.player.currentMove.damage / 100 * 60)
-                        self.checkOnce = true
+                        local reducedDamage = self.player.currentMove.damage / 100 * 40
+                        self.otherPlayer:takeDamage(reducedDamage)
+                        self.checkedOnce = true
                         return
                     end
                 end
