@@ -59,44 +59,26 @@ Animations.broadSword.block = {anim = getAnimation(Sprites.broadSword.block, 1, 
 Animations.broadSword.hit = {anim = getAnimation(Sprites.broadSword.hit, 1, 0.3, "pauseAtEnd"), image = Sprites.broadSword.hit, defaultFacing = "right"}
 end
 
---[[
-	-- Init a Daggers left attack move
-	  -- In PlayerAttackState.lua, function enter()
-	local data = MoveData.daggers.attack
-	move = Move(
-		data.frame.startUp,
-		data.frame.active,
-		data.frame.recover,
-		1,
-		CollisionBox(
-			data.hitbox.left.x + self.player.x,
-			data.hitbox.left.y + self.player.y,
-			data.hitbox.left.w,
-			data.hitbox.left.h
-		),
-		10
-	)
-]]--
 MoveData = {
 	-- Daggers
 	daggers = {
 		attack = {
 			frame = {
 				startUp = 3,
-				active = 6,
-				recover = 2,
+				active = 1,
+				recovery = 10,
 			},
 			hitbox = {
 				left = {
-					x = -32, y = 60,
-					w = 40, h = 10 
+					x = -27, y = 60,
+					w = 35, h = 15 
 				},
 				right = {
 					x = 42, y = 60,
-					w = 40, h = 10 
+					w = 35, h = 15 
 				}
 			},
-			damage = 15
+			damage = 12
 		},
 	},
 	
@@ -104,21 +86,21 @@ MoveData = {
 	swordShield = {
 		attack = {
 			frame = {
-				startUp = 5,
-				active = 7,
-				recover = 4,
+				startUp = 4,
+				active = 1,
+				recovery = 15,
 			},
 			hitbox = {
 				left = {
-					x = -32, y = 60,
+					x = -32, y = 67,
 					w = 40, h = 10 
 				},
 				right = {
-					x = 42, y = 60,
+					x = 42, y = 67,
 					w = 40, h = 10 
 				}
 			},
-			damage = 20
+			damage = 15
 		},
 	},
 	
@@ -126,21 +108,21 @@ MoveData = {
 	broadSword = {
 		attack = {
 			frame = {
-				startUp = 7,
-				active = 5,
-				recover = 6,
+				startUp = 6,
+				active = 1,
+				recovery = 20,
 			},
 			hitbox = {
 				left = {
-					x = -56, y = 60,
-					w = 60, h = 10 
+					x = -78, y = 75,
+					w = 70, h = 19 
 				},
 				right = {
-					x = 52, y = 60,
-					w = 60, h = 10 
+					x = 60, y = 70,
+					w = 70, h = 25
 				}
 			},
-			damage = 25
+			damage = 20
 		},
 	}
 }
@@ -166,6 +148,6 @@ CharacterStats = {
 		speed = 120
 	},
 	broadSword = {
-		speed = 100
+		speed = 90
 	}
 }

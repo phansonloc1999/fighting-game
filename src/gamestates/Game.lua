@@ -89,6 +89,10 @@ function Game:update(dt)
         healthbar:update(dt)
     end
 
+    if (love.keyboard.wasPressed("`")) then
+        DEBUG_COLLISION_BOXES = not DEBUG_COLLISION_BOXES
+    end
+
     love.keyboard.keysPressed = {}
     love.keyboard.keysReleased = {}
 end
