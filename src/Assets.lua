@@ -1,5 +1,11 @@
 local lg = love.graphics
 
+Fonts = {
+	small = lg.newFont('assets/Robot_Font.otf', 16),
+	medium = lg.newFont('assets/Robot_Font.otf', 24),
+	large = lg.newFont('assets/Robot_Font.otf', 30)
+}
+
 do
 Sprites = {}
 

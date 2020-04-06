@@ -4,6 +4,7 @@ Anim8     = require("libs/anim8")
 Tick      = require("libs/tick")
 Gamestate = require('libs/gamestate')
 Suit      = require('libs/suit')
+Timer     = require('libs/timer')
 
 Healthbar = require 'src.gui.Healthbar'
 

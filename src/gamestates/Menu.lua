@@ -19,7 +19,16 @@ function Menu:enter()
 	Tick.rate = 0.006
 
 	self.suit = Suit.new()
+	self.suit.theme.color = {
+		normal   = {bg = {0,0,0}, fg = {1,1,1}},
+    hovered  = {bg = {0,0,0}, fg = {1,1,1}},
+    active   = {bg = {0,0,0}, fg = {1,1,1}}
+	}
 	
+	self.timer = Timer.new()
+	self.suitAnimation = {}
+	for i = 0, 6 do self.suitAnimation[i] = {len = 0, timer = nil} end
+		
 	self.leftInfo = {id = 'daggers', keybind = {}}
 	self.rightInfo = {id = 'daggers', keybind = {}}
 	
@@ -27,7 +36,9 @@ function Menu:enter()
 end
 
 function Menu:update(dt)
-	updateAnimation(dt)
+	self.timer:update(dt)
+
+	updatePreviewAnimation(dt)
 
 	if self.currentFrame == 'main' then
 		self:mainMenu(dt)
@@ -36,7 +47,7 @@ function Menu:update(dt)
 	end
 end
 
-function updateAnimation(dt)
+function updatePreviewAnimation(dt)
 	previewAnimations.left.daggers:update(dt)
 	previewAnimations.left.swordShield:update(dt)
 	previewAnimations.left.broadSword:update(dt)
@@ -47,38 +58,78 @@ function updateAnimation(dt)
 end
 
 function Menu:mainMenu(dt)
-	if self.suit:Button('start', 240, 220, 80, 30).hit then
+	-- Start button
+	if self.suit:Button('START', {font = Fonts.medium, id = 0}, 240, 220, 80, 30).hovered then
+		self.suitAnimation[0].len = self.suitAnimation[0].len + 400 * dt
+		if self.suitAnimation[0].len > 80 then self.suitAnimation[0].len = 80 end
+	else
+		self.suitAnimation[0].len = self.suitAnimation[0].len - 400 * dt
+		if self.suitAnimation[0].len < 0 then self.suitAnimation[0].len = 0 end
+	end
+	if self.suit:Button('START', {id = 0}, 240, 220, 80, 30).hit then
 		Gamestate.switch(Game, self.leftInfo, self.rightInfo)
 	end
 	
+	-- Character select buttons
 	local id = {'daggers', 'swordShield', 'broadSword'}
 	for i = 1, 3 do
-		if self.suit:Button(tostring(i + 28), 30, 30 * i, 30, 30).hit then
+		if self.suit:Button(id[i]:upper(), {font = Fonts.small, id = i},
+				10, 40 * i, 120, 40).hovered then
+			self.suitAnimation[i].len = self.suitAnimation[i].len + 600 * dt
+			if self.suitAnimation[i].len > 120 then self.suitAnimation[i].len = 120 end
+		else
+			self.suitAnimation[i].len = self.suitAnimation[i].len - 600 * dt
+			if self.suitAnimation[i].len < 0 then self.suitAnimation[i].len = 0 end
+		end
+		if self.suit:Button(id[i]:upper(), {font = Fonts.small, id = i},
+				10, 40 * i, 120, 40).hit then
 			self.leftInfo.id = id[i]
 		end
 	end
 	for i = 1, 3 do
-		if self.suit:Button(tostring(i + 16), 480, 30 * i, 30, 30).hit then
+		if self.suit:Button(id[i]:upper(), {font = Fonts.small, id = i + 3},
+				420, 40 * i, 120, 40).hovered then
+			self.suitAnimation[i+3].len = self.suitAnimation[i+3].len + 1200 * dt
+			if self.suitAnimation[i+3].len > 120 then self.suitAnimation[i+3].len = 120 end
+		else
+			self.suitAnimation[i+3].len = self.suitAnimation[i+3].len - 600 * dt
+			if self.suitAnimation[i+3].len < 0 then self.suitAnimation[i+3].len = 0 end
+		end
+		if self.suit:Button(id[i]:upper(), {font = Fonts.small, id = i + 3},
+				420, 40 * i, 120, 40).hit then
 			self.rightInfo.id = id[i]
 		end
 	end
 end
 
 function Menu:draw()
+	---- Preview animation
 	previewAnimations['left'][self.leftInfo.id]:draw(
 		Sprites[self.leftInfo.id].idle,
-		120, 40,
+		190, 40,
 		0, 1, 1,
 		Sprites[self.leftInfo.id].idle:getWidth()/2/2
 	)
 	previewAnimations['right'][self.rightInfo.id]:draw(
 		Sprites[self.rightInfo.id].idle,
-		420, 40,
+		350, 40,
 		0, 1, 1,
 		Sprites[self.rightInfo.id].idle:getWidth()/2/2
 	)
 
 	self.suit:draw()
+	---- Suit animation
+	love.graphics.setLineWidth(2)
+	love.graphics.line(240 + 80/2 - self.suitAnimation[0].len/2, 250,
+			240 + 80/2 + self.suitAnimation[0].len/2, 250)
+	for i = 1, 3 do
+		love.graphics.line(10 + 100/2 - self.suitAnimation[i].len/2, 40 * i + 30,
+			10 + 120/2 + self.suitAnimation[i].len/2, 40 * i + 30)
+	end
+	for i = 4, 6 do
+		love.graphics.line(420 + 100/2 - self.suitAnimation[i].len/2, 40 * (i-3) + 30,
+			420 + 120/2 + self.suitAnimation[i].len/2, 40 * (i-3) + 30)
+	end
 end
 
 return Menu
