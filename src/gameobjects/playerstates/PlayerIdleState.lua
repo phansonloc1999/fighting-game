@@ -1,8 +1,6 @@
 ---@class PlayerIdleState
 PlayerIdleState = Class {__includes = BaseState}
 
-PLAYER_MOVE_SPEED = 100
-
 function PlayerIdleState:init(player)
     self.player = player ---@type Player
 end

@@ -59,18 +59,18 @@ function PlayerMoveState:update(dt)
     end
 
     if (love.keyboard.isDown(self.player.keyConfigs.left)) then
-        self.player.x = self.player.x - PLAYER_MOVE_SPEED * dt
+        self.player.x = self.player.x - self.player.speed * dt
 
         --- update hurtboxes positions
         for i = 1, #self.player.hurtBoxes do
-            self.player.hurtBoxes[i]:offsetPos(-PLAYER_MOVE_SPEED * dt, 0)
+            self.player.hurtBoxes[i]:offsetPos(-self.player.speed * dt, 0)
         end
     elseif (love.keyboard.isDown(self.player.keyConfigs.right)) then
-        self.player.x = self.player.x + PLAYER_MOVE_SPEED * dt
+        self.player.x = self.player.x + self.player.speed * dt
 
         --- update hurtboxes positions
         for i = 1, #self.player.hurtBoxes do
-            self.player.hurtBoxes[i]:offsetPos(PLAYER_MOVE_SPEED * dt, 0)
+            self.player.hurtBoxes[i]:offsetPos(self.player.speed * dt, 0)
         end
     end
 

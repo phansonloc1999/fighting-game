@@ -150,3 +150,15 @@ Sprites.environment = {
 	twig2 = lg.newImage('assets/environment/twig2.png'),
 	twig3 = lg.newImage('assets/environment/twig3.png'),
 }
+
+CharacterStats = {
+	daggers = {
+		speed = 150
+	},
+	swordShield = {
+		speed = 120
+	},
+	boardSword = {
+		speed = 100
+	}
+}

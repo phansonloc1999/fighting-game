@@ -4,6 +4,7 @@ Player = Class {}
 function Player:init(charId, x, y, keyConfigs, animations, isFacing)
     self.x, self.y = x, y
     self.health = 100
+    self.speed = CharacterStats[charId].speed
     self.hurtBoxes = {} ---@type CollisionBox[]
     self.hitBoxes = {} ---@type CollisionBox[]
     self.currentMove = nil
