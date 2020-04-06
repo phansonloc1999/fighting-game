@@ -55,7 +55,7 @@ function PlayerIdleState:update(dt)
     end
 
     if (love.keyboard.wasPressed(self.player.keyConfigs.attack)) then
-        self.player.stateMachine:change("attack")
+        self.player.stateMachine:change("attack", { moveData = self.player.moveData.attack })
         return
     end
 

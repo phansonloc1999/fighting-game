@@ -1,7 +1,7 @@
 ---@class Player
 Player = Class {}
 
-function Player:init(x, y, keyConfigs, animations, isFacing)
+function Player:init(charId, x, y, keyConfigs, animations, isFacing)
     self.x, self.y = x, y
     self.health = 100
     self.hurtBoxes = {} ---@type CollisionBox[]
@@ -32,6 +32,7 @@ function Player:init(x, y, keyConfigs, animations, isFacing)
     self.isFacing = isFacing
 
     self.animations = animations
+    self.moveData = self:loadCharMoveData(charId)
 
     self.isBlocking = false
 
@@ -48,4 +49,12 @@ end
 
 function Player:takeDamage(ammount)
     self.health = self.health - ammount
+end
+
+function Player:loadCharMoveData(charId)
+    for key, value in pairs(MoveData) do
+        if (charId == key) then
+            return MoveData[charId]
+        end
+    end
 end

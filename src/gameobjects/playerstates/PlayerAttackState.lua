@@ -10,13 +10,8 @@ end
 function PlayerAttackState:enter(params)
     table.insert(self.player.hurtBoxes, CollisionBox(self.player.x, self.player.y, 50, 100))
 
-    if (self.player.isFacing == "right") then
-        self.player.currentMove =
-            AttackMove(3, 6, 2, 1, {CollisionBox(self.player.x + 42, self.player.y + 60, 40, 10)}, 10)
-    else
-        self.player.currentMove =
-            AttackMove(3, 6, 2, 1, {CollisionBox(self.player.x - 32, self.player.y + 60, 40, 10)}, 10)
-    end
+    self.player.currentMove =
+        self:getAttackMove(params.moveData.frame, params.moveData.hitbox, params.moveData.damage, self.player.isFacing)
 
     self.player.currentAnimation = {
         anim = self.player.animations.stab.anim:clone(),
@@ -79,7 +74,6 @@ function PlayerAttackState:checkHitOtherPlayer()
                         self.checkOnce = true
                         return
                     elseif (self:attackIsBlocked()) then
-                        print("Attack blocked at frame " ..self.player.currentMove.elapsedFrames)
                         self.otherPlayer:takeDamage(self.player.currentMove.damage / 100 * 60)
                         self.checkOnce = true
                         return
@@ -97,4 +91,22 @@ end
 
 function PlayerAttackState:attackIsBlocked()
     return self.otherPlayer.isBlocking and self.player.isFacing ~= self.otherPlayer.isFacing
+end
+
+function PlayerAttackState:getAttackMove(frameData, hitbox, damage, isFacing)
+    return AttackMove(
+        frameData.startUp,
+        frameData.active,
+        frameData.recovery,
+        0,
+        {
+            CollisionBox(
+                self.player.x + hitbox[isFacing].x,
+                self.player.y + hitbox[isFacing].y,
+                hitbox[isFacing].w,
+                hitbox[isFacing].h
+            )
+        },
+        damage
+    )
 end
