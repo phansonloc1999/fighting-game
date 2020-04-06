@@ -15,7 +15,7 @@ function Game:enter(from, leftInfo, rightInfo)
         leftInfo.id,
         60,
         170,
-        {left = "a", right = "d", attack = "f", block = "g"},
+        {left = "a", right = "d", attack = "c", block = "v"},
         {
             idle = Animations[leftInfo.id].idle,
             walk = Animations[leftInfo.id].walk,
@@ -31,7 +31,7 @@ function Game:enter(from, leftInfo, rightInfo)
         rightInfo.id,
         436,
         170,
-        {left = "left", right = "right", attack = "j", block = "k"},
+        {left = "left", right = "right", attack = "/", block = "."},
         {
             idle = Animations[rightInfo.id].idle,
             walk = Animations[rightInfo.id].walk,
