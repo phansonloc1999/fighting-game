@@ -15,7 +15,7 @@ do
     Sprites.daggers.walk = lg.newImage("assets/characters/daggers/walk.png") -- 140 ms per frame
     Sprites.daggers.block = lg.newImage("assets/characters/daggers/block.png") -- 1 frame
     Sprites.daggers.hit = lg.newImage("assets/characters/daggers/hit.png") -- 1 frame
-    Sprites.daggers.attack = lg.newImage("assets/characters/daggers/stab.png")
+    Sprites.daggers.stab = lg.newImage("assets/characters/daggers/stab.png")
     Sprites.daggers.doubleStab = lg.newImage("assets/characters/daggers/doubleStab.png")
 
     Sprites.swordShield = {}
@@ -23,7 +23,9 @@ do
     Sprites.swordShield.walk = lg.newImage("assets/characters/swordShield/walk.png") -- 140 ms per frame
     Sprites.swordShield.block = lg.newImage("assets/characters/swordShield/block.png") -- 1 frame
     Sprites.swordShield.hit = lg.newImage("assets/characters/swordShield/hit.png") -- 1 frame
-    Sprites.swordShield.attack = lg.newImage("assets/characters/swordShield/strike.png")
+    Sprites.swordShield.strike = lg.newImage("assets/characters/swordShield/strike.png")
+    Sprites.swordShield.throwShield = lg.newImage("assets/characters/swordShield/throwShield.png")
+    Sprites.swordShield.shield = lg.newImage("assets/characters/swordShield/shield.png")
 
     Sprites.broadSword = {}
     Sprites.broadSword.idle = lg.newImage("assets/characters/broadSword/idle.png") -- 220 ms per frame
@@ -48,8 +50,8 @@ do
         defaultFacing = "left"
     }
     Animations.daggers.attack = {
-        anim = getAnimation(Sprites.daggers.attack, 3, {0.05, 0.1, 0.05}, "pauseAtEnd"),
-        image = Sprites.daggers.attack,
+        anim = getAnimation(Sprites.daggers.stab, 3, {0.05, 0.1, 0.05}, "pauseAtEnd"),
+        image = Sprites.daggers.stab,
         defaultFacing = "left"
     }
     Animations.daggers.block = {
@@ -80,8 +82,8 @@ do
         defaultFacing = "left"
     }
     Animations.swordShield.attack = {
-        anim = getAnimation(Sprites.swordShield.attack, 3, {0.08, 0.116, 0.1}, "pauseAtEnd"),
-        image = Sprites.swordShield.attack,
+        anim = getAnimation(Sprites.swordShield.strike, 3, {0.08, 0.116, 0.1}, "pauseAtEnd"),
+        image = Sprites.swordShield.strike,
         defaultFacing = "left"
     }
     Animations.swordShield.block = {
@@ -93,6 +95,11 @@ do
         anim = getAnimation(Sprites.swordShield.hit, 1, 0.3, "pauseAtEnd"),
         image = Sprites.swordShield.hit,
         defaultFacing = "right"
+    }
+    Animations.swordShield.attack1 = {
+        anim = getAnimation(Sprites.swordShield.throwShield, 3, {0.2, 0.5, 0.2}, "pauseAtEnd"),
+        image = Sprites.swordShield.throwShield,
+        defaultFacing = "left"
     }
 
     Animations.broadSword = {}
@@ -150,25 +157,25 @@ MoveData = {
         },
         attack1 = {
             frame = {
-				startUp = 3,
+                startUp = 5,
                 active = 1,
                 recovery = 30
             },
             hitbox = {
                 left = {
-                    x = -27,
+                    x = -40,
                     y = 60,
-                    w = 35,
+                    w = 28,
                     h = 15
                 },
                 right = {
-                    x = 42,
+                    x = 30,
                     y = 60,
-                    w = 35,
+                    w = 25,
                     h = 15
                 }
             },
-            damage = 24
+            damage = 20
         }
     },
     -- SwordShield
@@ -194,6 +201,28 @@ MoveData = {
                 }
             },
             damage = 15
+        },
+        attack1 = {
+            frame = {
+                startUp = 12,
+                active = 60,
+                recovery = 0
+            },
+            hitbox = {
+                left = {
+                    x = 41,
+                    y = 50,
+                    w = 32,
+                    h = 32
+                },
+                right = {
+                    x = -23,
+                    y = 50,
+                    w = 32,
+                    h = 32
+                }
+            },
+            damage = 0.5
         }
     },
     -- BroadSword

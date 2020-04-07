@@ -10,8 +10,23 @@ end
 function PlayerAttackState:enter(params)
     table.insert(self.player.hurtBoxes, CollisionBox(self.player.x, self.player.y, 50, 100))
 
-    self.player.currentMove =
-        self:getAttackMove(params.moveData.frame, params.moveData.hitbox, params.moveData.damage, self.player.isFacing)
+    if (self.player.charId == "swordShield" and params.attackKeyConf == "attack1") then
+        self.player.currentMove =
+            self:getThrowAttackMove(
+            params.moveData.frame,
+            params.moveData.hitbox,
+            params.moveData.damage,
+            self.player.isFacing
+        )
+    else
+        self.player.currentMove =
+            self:getAttackMove(
+            params.moveData.frame,
+            params.moveData.hitbox,
+            params.moveData.damage,
+            self.player.isFacing
+        )
+    end
 
     self.player.currentAnimation = {
         anim = self.player.animations[params.attackKeyConf].anim:clone(),
@@ -109,5 +124,24 @@ function PlayerAttackState:getAttackMove(frameData, hitbox, damage, isFacing)
             )
         },
         damage
+    )
+end
+
+function PlayerAttackState:getThrowAttackMove(frameData, hitbox, damage, isFacing)
+    return ThrowAttackMove(
+        frameData.startUp,
+        frameData.active,
+        frameData.recovery,
+        0,
+        {
+            CollisionBox(
+                self.player.x + hitbox[isFacing].x,
+                self.player.y + hitbox[isFacing].y,
+                hitbox[isFacing].w,
+                hitbox[isFacing].h
+            )
+        },
+        damage,
+        isFacing
     )
 end

@@ -2,6 +2,7 @@
 Player = Class {}
 
 function Player:init(charId, x, y, keyConfigs, animations, isFacing, index)
+    self.charId = charId
     self.x, self.y = x, y
     self.health = 100
     self.speed = CharacterStats[charId].speed

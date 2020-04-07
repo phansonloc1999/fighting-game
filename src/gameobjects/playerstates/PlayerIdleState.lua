@@ -68,7 +68,7 @@ function PlayerIdleState:update(dt)
         self.player.stateMachine:change("move")
     end
 
-    if (love.keyboard.wasPressed(self.player.keyConfigs.block)) then
+    if (love.keyboard.isDown(self.player.keyConfigs.block)) then
         self.player.stateMachine:change("block")
     end
 end
