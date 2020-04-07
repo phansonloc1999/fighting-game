@@ -1,11 +1,13 @@
 local Game = {}
 
 function Game:enter(from, leftInfo, rightInfo)
+    love.keyboard.keysPressed = {}
+
     self._info = {
         left = leftInfo,
         right = rightInfo
     }
-
+    
     -- Init players
     player1 =
         Player(
@@ -90,6 +92,14 @@ function Game:update(dt)
         healthbar:update(dt)
     end
 
+    if (player1.isIdling and player2.isIdling) then
+        if player1.health <= 0 then
+            self:toGameOver(1)
+        elseif player2.health <= 0 then
+            self:toGameOver(2)
+        end
+    end
+
     if (love.keyboard.wasPressed("`")) then
         DEBUG_COLLISION_BOXES = not DEBUG_COLLISION_BOXES
     end
@@ -126,6 +136,17 @@ function Game:drawForeground()
     lg.setColor(1, 1, 1)
     lg.draw(Sprites.environment.bush2, 40, 274)
     lg.draw(Sprites.environment.bush3, 345, 264)
+end
+
+function Game:toGameOver(index)
+    self.timer:after(
+        0.06,
+        function()
+            local left = Gamestate.current()._info.left
+            local right = Gamestate.current()._info.right
+            Gamestate.switch(GameOver, left, right, index)
+        end
+    )
 end
 
 return Game

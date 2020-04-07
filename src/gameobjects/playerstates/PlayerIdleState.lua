@@ -15,10 +15,14 @@ function PlayerIdleState:enter(params)
     if (self.player.isFacing ~= self.player.animations.idle.defaultFacing) then
         self.player.currentAnimation.anim = self.player.currentAnimation.anim:flipH()
     end
+    
+    self.player.isIdling = true
 end
 
 function PlayerIdleState:exit()
     self.player.hurtBoxes = {}
+
+    self.player.isIdling = false
 end
 
 function PlayerIdleState:draw()

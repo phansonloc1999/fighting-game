@@ -9,6 +9,8 @@ function Player:init(charId, x, y, keyConfigs, animations, isFacing, index)
     self.hurtBoxes = {} ---@type CollisionBox[]
     self.hitBoxes = {} ---@type CollisionBox[]
     self.currentMove = nil
+    self.isIdling = true
+    self.currentAnimation = nil
 
     self.stateMachine =
         StateMachine {
@@ -53,16 +55,6 @@ end
 
 function Player:takeDamage(ammount)
     self.health = self.health - ammount
-    if self.health <= 0 then
-				Gamestate.current().timer:after(
-						0.06,
-						function()
-								local left = Gamestate.current()._info.left
-								local right = Gamestate.current()._info.right 
-						    Gamestate.switch(GameOver, left, right, self.index)
-						end
-				)
-    end
 end
 
 function Player:loadCharMoveData(charId)
