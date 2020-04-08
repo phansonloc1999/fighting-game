@@ -159,7 +159,7 @@ MoveData = {
                     h = 15
                 }
             },
-            damage = 12
+            damage = 8
         },
         attack1 = {
             frame = {
@@ -293,7 +293,7 @@ Sprites.environment = {
 
 CharacterStats = {
     daggers = {
-        speed = 150
+        speed = 140
     },
     swordShield = {
         speed = 120
