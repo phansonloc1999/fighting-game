@@ -9,7 +9,7 @@ function Player:init(charId, x, y, keyConfigs, animations, isFacing, index)
     self.hurtBoxes = {} ---@type CollisionBox[]
     self.hitBoxes = {} ---@type CollisionBox[]
     self.currentMove = nil
-    self.isIdling = true
+    self.isIdling, self.isHit = true, false
     self.currentAnimation = nil
 
     self.stateMachine =

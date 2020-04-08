@@ -33,6 +33,8 @@ function PlayerHitState:draw()
 end
 
 function PlayerHitState:enter(params)
+    self.player.isHit = true
+
     table.insert(self.player.hurtBoxes, CollisionBox(self.player.x, self.player.y, 50, 100))
 
     self.player.currentAnimation = {
@@ -49,6 +51,7 @@ end
 
 function PlayerHitState:exit()
     self.player.hurtBoxes = {}
+    self.player.isHit = false
 end
 
 function PlayerHitState:update(dt)

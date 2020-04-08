@@ -92,7 +92,7 @@ function Game:update(dt)
         healthbar:update(dt)
     end
 
-    if (player1.isIdling and player2.isIdling) then
+    if (not player1.isHit and not player2.isHit) then
         if player1.health <= 0 then
             self:toGameOver(1)
         elseif player2.health <= 0 then
