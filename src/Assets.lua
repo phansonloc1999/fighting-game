@@ -32,7 +32,8 @@ do
     Sprites.broadSword.walk = lg.newImage("assets/characters/broadSword/walk.png") -- 140 ms per frame
     Sprites.broadSword.block = lg.newImage("assets/characters/broadSword/block.png") -- 1 frame
     Sprites.broadSword.hit = lg.newImage("assets/characters/broadSword/hit.png") -- 1 frame
-    Sprites.broadSword.attack = lg.newImage("assets/characters/broadSword/jumpStrike.png")
+    Sprites.broadSword.jumpStrike = lg.newImage("assets/characters/broadSword/jumpStrike.png")
+    Sprites.broadSword.punch = lg.newImage("assets/characters/broadSword/punch.png")
 
     Sprites.healthbar = lg.newImage("assets/healthbar.png")
 
@@ -114,8 +115,8 @@ do
         defaultFacing = "left"
     }
     Animations.broadSword.attack = {
-        anim = getAnimation(Sprites.broadSword.attack, 3, {0.116, 0.084, 0.15}, "pauseAtEnd"),
-        image = Sprites.broadSword.attack,
+        anim = getAnimation(Sprites.broadSword.jumpStrike, 3, {0.208, 0.208, 0.75}, "pauseAtEnd"),
+        image = Sprites.broadSword.jumpStrike,
         defaultFacing = "left"
     }
     Animations.broadSword.block = {
@@ -127,6 +128,11 @@ do
         anim = getAnimation(Sprites.broadSword.hit, 1, 0.3, "pauseAtEnd"),
         image = Sprites.broadSword.hit,
         defaultFacing = "right"
+    }
+    Animations.broadSword.attack1 = {
+        anim = getAnimation(Sprites.broadSword.punch, 4, {0.15, 0.15, 0.3, 0.15}, "pauseAtEnd"),
+        image = Sprites.broadSword.punch,
+        defaultFacing = "left"
     }
 end
 
@@ -229,9 +235,9 @@ MoveData = {
     broadSword = {
         attack = {
             frame = {
-                startUp = 6,
-                active = 1,
-                recovery = 20
+                startUp = 25,
+                active = 7,
+                recovery = 40
             },
             hitbox = {
                 left = {
@@ -248,6 +254,28 @@ MoveData = {
                 }
             },
             damage = 20
+        },
+        attack1 = {
+            frame = {
+                startUp = 13,
+                active = 23,
+                recovery = 9
+            },
+            hitbox = {
+                left = {
+                    x = -38,
+                    y = 20,
+                    w = 13,
+                    h = 13
+                },
+                right = {
+                    x = 20,
+                    y = 20,
+                    w = 13,
+                    h = 13
+                }
+            },
+            damage = 7
         }
     }
 }
