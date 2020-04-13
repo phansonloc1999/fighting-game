@@ -28,7 +28,12 @@ function PlayerAttackState:enter(params)
         )
     end
 
-    self:getAnimationByKeyConfig(params.attackKeyConf)
+    -- self:getAnimationByKeyConfig(params.attackKeyConf)
+    self.player.currentAnimation = {
+        anim = self.player.animations[params.attackKeyConf].anim:clone(),
+        image = self.player.animations[params.attackKeyConf].image
+    }
+
     if (self.player.isFacing ~= self.player.animations.attack.defaultFacing) then
         self.player.currentAnimation.anim = self.player.currentAnimation.anim:flipH()
     end
