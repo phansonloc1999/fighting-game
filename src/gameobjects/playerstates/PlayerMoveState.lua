@@ -54,7 +54,7 @@ function PlayerMoveState:update(dt)
     end
 
     if (love.keyboard.wasPressed(self.player.keyConfigs.attack)) then
-        self.player.stateMachine:change("attack", { moveData = self.player.moveData.attack })
+        self.player.stateMachine:change("attack", { moveData = self.player.moveData.attack, attackKeyConf = self.player.keyConfigs.attack })
         return
     end
 

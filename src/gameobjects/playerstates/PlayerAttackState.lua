@@ -28,10 +28,7 @@ function PlayerAttackState:enter(params)
         )
     end
 
-    self.player.currentAnimation = {
-        anim = self.player.animations[params.attackKeyConf].anim:clone(),
-        image = self.player.animations[params.attackKeyConf].image
-    }
+    self:getAnimationByKeyConfig(params.attackKeyConf)
     if (self.player.isFacing ~= self.player.animations.attack.defaultFacing) then
         self.player.currentAnimation.anim = self.player.currentAnimation.anim:flipH()
     end
@@ -144,4 +141,17 @@ function PlayerAttackState:getThrowAttackMove(frameData, hitbox, damage, isFacin
         damage,
         isFacing
     )
+end
+
+function PlayerAttackState:getAnimationByKeyConfig(attackKeyConf)
+    local keyInAnimationsTable
+    if (self.player.keyConfigs.attack == attackKeyConf) then
+        keyInAnimationsTable = "attack"
+    elseif (self.player.keyConfigs.attack1 == attackKeyConf) then
+        keyInAnimationsTable = "attack1"
+    end
+    self.player.currentAnimation = {
+        anim = self.player.animations[keyInAnimationsTable].anim:clone(),
+        image = self.player.animations[keyInAnimationsTable].image
+    }
 end
