@@ -5,3 +5,4 @@
 
 ![image](https://github.com/phansonloc1999/fighting-game/assets/31174158/5e38a5f6-d121-4c46-90c0-396353751a14)
 
+![image](https://github.com/phansonloc1999/fighting-game/assets/31174158/b717c876-b901-408c-bbbb-8ea25555be20)
